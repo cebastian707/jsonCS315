@@ -1,3 +1,7 @@
+/*By::Cebastian Santiago 
+* CS315 Reading JSON Files 
+* JSONTokenizer function implentation class
+*/
 #include<iostream>
 #include"JSONTokenizer.hpp"
 #include"JSONToken.hpp"
@@ -8,8 +12,12 @@ JSONTokenizer::JSONTokenizer(const std::string& inputFile):inputFileName{inputFi
 	inputStream.open(inputFile, std::ios::in);
 }
 
-char JSONTokenizer::ischarcter(char c) {
-	return c == '[' || c == '{' || c == '"' || c == ':'  || c == ',' || c == '}' || c == ']';
+bool JSONTokenizer::ischarcter(char c) {
+	if (c == '[' || c ==']' || c== '{' || c == '}' || c == '"' || c == ':' || c == ',') {
+		return true;
+	}
+
+	return false;
 }
 
 JSONToken JSONTokenizer::getToken() {
@@ -29,14 +37,14 @@ JSONToken JSONTokenizer::getToken() {
 		return token;
 	}
 	
-	if (inputStream.eof()) {
+	else if (inputStream.eof()) {
 		JSONToken token;
 		token.Eof();
 		return token;
 	}
 
 
-	if (isdigit(c)){
+	else if (isdigit(c)){
 		inputStream.putback(c);
 		std::string nums;
 
@@ -46,17 +54,23 @@ JSONToken JSONTokenizer::getToken() {
 				break;
 			}
 			nums.push_back(c);
-			//nums += c;
 		}
 		JSONToken token(nums);
 		return token;
+		
 	}
-	
 
-
-	if (ischarcter(c)) {
+	else if (ischarcter(c)) {
 		JSONToken token(c);
 		return token;
 	}
 
+	else if(!ischarcter(c)) {
+		std::cout << "Unexpected character in input ->" << c << "<-\n";
+		std::cout << "Terminating...\n";
+		exit(5);
+	}
+
 }
+//exit(4) file could not be open
+//exit(5) wrong input in file
