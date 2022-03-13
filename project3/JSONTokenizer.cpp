@@ -45,8 +45,8 @@ JSONToken JSONTokenizer::getToken() {
 				inputStream.putback(c);
 				break;
 			}
-
-			nums += c;
+			nums.push_back(c);
+			//nums += c;
 		}
 		JSONToken token(nums);
 		return token;
