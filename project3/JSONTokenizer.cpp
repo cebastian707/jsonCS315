@@ -6,7 +6,8 @@
 #include"JSONTokenizer.hpp"
 #include"JSONToken.hpp"
 #include<string>
-#include<iostream>
+
+
 
 JSONTokenizer::JSONTokenizer(const std::string& inputFile):inputFileName{inputFile}{
 	inputStream.open(inputFile, std::ios::in);
@@ -46,18 +47,11 @@ JSONToken JSONTokenizer::getToken() {
 
 	else if (isdigit(c)){
 		inputStream.putback(c);
-		std::string nums;
-
-		while (inputStream >> c) {
-			if (c == ',' || c == '}') {
-				inputStream.putback(c);
-				break;
-			}
-			nums.push_back(c);
-		}
-		JSONToken token(nums);
+		double number = 0;
+		inputStream >> number;
+		JSONToken token;
+		token.make_number(number);
 		return token;
-		
 	}
 
 	else if (ischarcter(c)) {

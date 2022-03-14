@@ -71,9 +71,25 @@ public:
 	/// sets end of file equal to true
 	/// </summary>
 	void Eof();
+
+	/// @brief 
+	/// @returns the boolean variable _isnumber
+	bool is_number();
+
+	/// @brief prints the 
+	/// number from JSON file 
+	/// we use double variable and setprecision
+	/// to print the decimal numbers
+	void nums();
+	
+	/// @brief sets the token nums equal to number
+	/// and boolean variable equal to true
+	void make_number(double nums);
+
 private:
 	std::string _string;
 	char _character;
-	bool  _isstring, _ischarcter,_eof;
+	double number;
+	bool  _isstring,_isnumber, _ischarcter,_eof;
 };
 #endif // !JSONToken_HPP
