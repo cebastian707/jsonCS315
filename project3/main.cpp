@@ -1,4 +1,6 @@
-/*
+/*Created by professor Ali A. Kooshesh 
+* CS315 DSA Reading Json Files
+* Project 3 Phase one
 */
 
 #include<iostream>
@@ -24,3 +26,4 @@ int main(int argc, char* argv[]) {
     }
     return 0;
 }
+//exit(2) file could not be open 

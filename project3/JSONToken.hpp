@@ -1,36 +1,76 @@
+/*By::Cebastian Santiago
+* CS315 Reading JSON Files
+* Phase One
+*/
 #pragma once
 #ifndef JSONToken_HPP
 #define JSONToken_HPP
 #include<iostream>
 #include<string>
 
-
 class JSONToken{
 public:
-	JSONToken(): _isstring{ false }, _ischarcter{ false }, _eof{ false } {};
-	JSONToken(char c):
-		_ischarcter{true},
-		_eof{false},
-		_character{ c },
-		_isstring{ false } {}
+	/// <summary>
+	/// constructer For the class
+	/// </summary>
+	JSONToken();
 
+	/// <summary>
+	/// Constructer the param sets the 
+	/// token value passed form the the JSONTokenizer 
+	/// class equal to our private variable and the boolean variable 
+	/// _ischarcter changes to true since we have a char that 
+	/// is being tokenized
+	/// </summary>
+	/// <param name="c"></param>
+	JSONToken(const char c);
 
-	JSONToken(std::string& input):_isstring{true},
-		_eof{ false }, _string{ input } {}
-	bool _isString() { return _isstring; }
-	bool _isCharcter() { return _ischarcter;}
-	bool  endOfFile() { return _eof; }
+	/// <summary>
+	/// Constructer the param 
+	/// is called form the JSONToknizer class pass it 
+	/// the string toke and set the string equal to are private varible 
+	/// string and the _isstring is changed to true since what we passed
+	/// is a string
+	/// </summary>
+	/// <param name="input"></param>
+	JSONToken(const std::string input);
+	
+	/// <summary>
+	/// Returns the _isstring boolean variable
+	/// </summary>
+	bool _isString();
 
-	std::string _ISString() { return _string;}
+	/// <summary>
+	/// Returns the _isscharcter boolean variable 
+	/// </summary>
+	bool _isCharcter();
 
-	void operators(char charct) {
-		_character = charct;
-		_ischarcter = true;
-	}
+	/// <summary>
+	/// returns _eof boolean variable
+	/// </summary>
+	bool  endOfFile();
 
-	char is_charcter() { return _character;}
+	/// <summary>
+	/// returns _string variable 
+	/// </summary>
+	std::string _ISString();
+	
+	/// <summary>
+	/// returns _character
+	/// </summary>
+	char is_charcter();
+
+	/// <summary>
+	/// print the values read form the json file 
+	/// but first check if the value is the correct
+	/// input 
+	/// </summary>
 	void print();
-	void Eof() { _eof = true; }
+	
+	/// <summary>
+	/// sets end of file equal to true
+	/// </summary>
+	void Eof();
 private:
 	std::string _string;
 	char _character;
