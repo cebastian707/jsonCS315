@@ -7,7 +7,7 @@
 
 class JSONToken{
 public:
-	JSONToken(): _isstring{ false }, _ischarcter{ false }, _eof{ false }, _character{ '\n' } {};
+	JSONToken(): _isstring{ false }, _ischarcter{ false }, _eof{ false } {};
 	JSONToken(char c):
 		_ischarcter{true},
 		_eof{false},
@@ -15,9 +15,8 @@ public:
 		_isstring{ false } {}
 
 
-	JSONToken(std::string& input) :_isstring{ true },
-		_eof{ false }, _string{ input }, _ischarcter{ false }, _character{ '\n' }{};
-
+	JSONToken(std::string& input):_isstring{true},
+		_eof{ false }, _string{ input } {}
 	bool _isString() { return _isstring; }
 	bool _isCharcter() { return _ischarcter;}
 	bool  endOfFile() { return _eof; }
