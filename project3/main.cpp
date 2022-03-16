@@ -1,4 +1,4 @@
-/*Created by professor Ali A. Kooshesh SSU
+/*Created by professor Ali A. Kooshesh SSUJSON
 * CS315 DSA Reading Json Files
 * Project 3 Phase one
 */

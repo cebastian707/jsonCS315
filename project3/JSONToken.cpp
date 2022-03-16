@@ -3,7 +3,6 @@
 * of the JSONToken class
 */
 #include"JSONToken.hpp"
-#include"JSONTokenizer.hpp"
 #include<iomanip>
 #include<iostream>
 
