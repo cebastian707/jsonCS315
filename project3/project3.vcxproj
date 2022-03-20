@@ -142,10 +142,12 @@
     <ClCompile Include="JSONToken.cpp" />
     <ClCompile Include="JSONTokenizer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Pair.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="JSONToken.hpp" />
     <ClInclude Include="JSONTokenizer.hpp" />
+    <ClInclude Include="Pair.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

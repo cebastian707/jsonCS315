@@ -24,12 +24,18 @@
     <ClCompile Include="JSONToken.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Pair.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="JSONTokenizer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="JSONToken.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pair.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
