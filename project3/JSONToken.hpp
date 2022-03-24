@@ -80,12 +80,23 @@ public:
 	/// number from JSON file 
 	/// we use double variable and setprecision
 	/// to print the decimal numbers
-	void nums();
+	double nums();
 	
 	/// @brief sets the token nums equal to number
 	/// and boolean variable equal to true
 	void make_number(double nums);
 
+	/// @brief checks if charcter is {
+	/// @returns true if it is else returns false
+	bool isOpenBrace();
+
+	/// @brief checks if charcter a comma
+	/// @returns true if comma is true and else false 
+	bool isComma();
+
+	/// @brief checks if charcter is {
+	/// @returns true if it is else returns false; 
+	bool isCloseBrace();
 private:
 	std::string _string;
 	char _character;

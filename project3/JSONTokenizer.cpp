@@ -30,10 +30,25 @@ JSONToken JSONTokenizer::getToken() {
 	char c;
 	inputStream >> c;
 
+	if (c == '[' || c==']') {
+		while (inputStream >> c){
+			if (c == '{' || c=='}') {
+				JSONToken token(c);
+					return token;
+			}
+			break;
+		}
+	}
 
-	if ( c == '"') {
-		std::string input;
-		std::getline(inputStream, input,'"');
+
+	else if ( c == '"') {
+		std::string input = "";
+		while (inputStream >> c) {
+			if (c == '"') {
+				break;
+			}
+			input.push_back(c);
+		}
 		JSONToken token(input);
 		return token;
 	}

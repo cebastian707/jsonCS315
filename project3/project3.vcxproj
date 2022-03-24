@@ -139,12 +139,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EntityInstance.cpp" />
+    <ClCompile Include="JSONParser.cpp" />
     <ClCompile Include="JSONToken.cpp" />
     <ClCompile Include="JSONTokenizer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Pair.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="EntityInstance.hpp" />
+    <ClInclude Include="JSONParser.hpp" />
     <ClInclude Include="JSONToken.hpp" />
     <ClInclude Include="JSONTokenizer.hpp" />
     <ClInclude Include="Pair.hpp" />

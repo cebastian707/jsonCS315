@@ -7,6 +7,7 @@
 #include<fstream>
 #include"JSONTokenizer.hpp"
 #include"JSONToken.hpp"
+#include"JSONParser.hpp"
 
 
 int main(int argc, char* argv[]) {
@@ -18,12 +19,20 @@ int main(int argc, char* argv[]) {
     }
     inputStream.close();
     
+
     JSONTokenizer jsonTokenizer(argv[1]); // The Tokenizer opens and reads from the input file.
     JSONToken token = jsonTokenizer.getToken();
+    JSONParser par(argv[1]);
+
+    par.parseJSONObject();
+    par.parseAPair();
+
+    /*
     while (!token.endOfFile()) {
         token.print();
         token = jsonTokenizer.getToken();
     }
+    */
     return 0;
 }
 //exit(2) file could not be open 

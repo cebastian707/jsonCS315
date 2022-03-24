@@ -12,8 +12,10 @@ Pair::Pair(std::string attributeName, std::string attributeValue) {
 }
 
 Pair::Pair(std::string attributeName,double num_value) {
-	attributeName = _attributeName;
-	num_value = _attributeNumberValue;
+	_isNumber = true;
+	_attributeName = attributeName;
+    _attributeNumberValue = num_value;
+
 }
 
 

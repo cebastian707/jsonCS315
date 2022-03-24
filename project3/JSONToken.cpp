@@ -8,14 +8,37 @@
 #include<iostream>
 
 
+
+bool JSONToken::isCloseBrace() {
+	if (_character == '}' || _character == ']') {
+		return true;
+	}
+	return false;
+}
+
+bool JSONToken::isComma() {
+	if (_character == ',') {
+		return true;
+	}
+	return false;
+}
+
+bool JSONToken::isOpenBrace() {
+	if (_character == '{' || _character == '[') {
+		return true;
+	}
+
+	return false;
+}
+
 void JSONToken::make_number(double nums) {
 	number = nums;
 	_isnumber = true;
 }
 
-void JSONToken::nums() {
-	std::cout<<std::setprecision(13)<< number <<  std::endl;
-
+double JSONToken::nums() {
+	//std::cout<<std::setprecision(13)<< number <<  std::endl;
+	return number;
 }
 
 bool JSONToken::is_number() {
@@ -79,7 +102,7 @@ void JSONToken::print() {
 	}
 
 	else if (is_number()) {
-		nums();
+		std::cout << std::setprecision(13) << nums() << std::endl;
 	}
 
 	else if (_isCharcter()){
