@@ -7,8 +7,8 @@
 
 
 Pair::Pair(std::string attributeName, std::string attributeValue) {
-	attributeName = _attributeName;
-	attributeValue = _attributeStringValue;
+	_attributeName = attributeName;
+	_attributeStringValue = attributeValue;
 }
 
 Pair::Pair(std::string attributeName,double num_value) {

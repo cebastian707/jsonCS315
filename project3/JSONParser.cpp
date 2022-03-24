@@ -26,16 +26,15 @@ Pair JSONParser::parseAPair() {
 
     if (token.is_number()){
         double nums = token.nums();
-
         Pair pair(attribute, nums);
-
         return pair;
     }
 
-    else{
-        attribute_stringvalue = token._ISString();
-        
-    }
+    attribute_stringvalue = token._ISString();
+    attribute_stringvalue.push_back('"');
+    Pair pair(attribute, attribute_stringvalue);
+
+    return pair;
 }
 
 
