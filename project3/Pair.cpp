@@ -7,6 +7,7 @@
 
 
 Pair::Pair(std::string attributeName, std::string attributeValue) {
+	_isNumber = false;
 	_attributeName = attributeName;
 	_attributeStringValue = attributeValue;
 }

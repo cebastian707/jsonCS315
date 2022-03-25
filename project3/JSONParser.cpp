@@ -1,4 +1,6 @@
-#include<fstream>
+/*By Cebastian Santiago 
+* CS315 JSONParser class functions
+*/
 #include<iostream>
 #include<string>
 #include"JSONParser.hpp"
@@ -8,20 +10,24 @@
 #include"Pair.hpp"
 
 Pair JSONParser::parseAPair() {
+    //get the current token
     JSONToken token = tokenizer.getToken();
     
+    //we except a string and we also add the qoutes ""
     std::string attribute = "";
     std::string attribute_stringvalue = "";
-    attribute_stringvalue.push_back('"');
 
-    attribute.push_back('"');
+ 
     attribute = token._ISString();  
-    attribute.push_back('"');
 
+    //then we except the colon add that 
+    //to the string
     token = tokenizer.getToken();
     char colon = token.is_charcter();
     attribute.push_back(colon);
 
+    //check if token is either a string value 
+    //or number 
     token = tokenizer.getToken();
 
     if (token.is_number()){
@@ -31,7 +37,6 @@ Pair JSONParser::parseAPair() {
     }
 
     attribute_stringvalue = token._ISString();
-    attribute_stringvalue.push_back('"');
     Pair pair(attribute, attribute_stringvalue);
 
     return pair;
@@ -42,7 +47,7 @@ Pair JSONParser::parseAPair() {
 
 
 
-JSONParser::JSONParser(const std::string& nameOfInputFile):tokenizer{nameOfInputFile} {
+JSONParser::JSONParser(std::string nameOfInputFile):tokenizer{nameOfInputFile} {
        
 }
 
@@ -60,7 +65,7 @@ EntityInstance JSONParser::parseJSONObject() {
      EntityInstance instance;
      
      do {
-         Pair pair = parseAPair();         					  
+         Pair pair = parseAPair();  
          instance.addPair(pair);
          token = tokenizer.getToken();  
      } while(token.isComma() );  

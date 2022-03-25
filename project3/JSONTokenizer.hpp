@@ -2,7 +2,6 @@
 * JSONTokenizer Class Header
 * Function
 */
-
 #pragma once
 #ifndef JSONTokenizer_HPP
 #define JSONTokenizer_HPP

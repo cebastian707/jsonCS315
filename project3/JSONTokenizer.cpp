@@ -30,9 +30,9 @@ JSONToken JSONTokenizer::getToken() {
 	char c;
 	inputStream >> c;
 
-	if (c == '[' || c==']') {
+	if (c == '[') {
 		while (inputStream >> c){
-			if (c == '{' || c=='}') {
+			if (c == '{') {
 				JSONToken token(c);
 					return token;
 			}
@@ -43,12 +43,16 @@ JSONToken JSONTokenizer::getToken() {
 
 	else if ( c == '"') {
 		std::string input = "";
+		input.push_back(c);
+
 		while (inputStream >> c) {
 			if (c == '"') {
+				input.push_back(c);
 				break;
 			}
 			input.push_back(c);
 		}
+
 		JSONToken token(input);
 		return token;
 	}
@@ -79,7 +83,13 @@ JSONToken JSONTokenizer::getToken() {
 		std::cout << "Terminating...\n";
 		exit(5);
 	}
-
+	/*To aviod this complier warning even though the program should'nt reach all the way here
+	* JSONTokenizer.cpp: In member function ‘JSONToken JSONTokenizer::getToken()’:
+	*JSONTokenizer.cpp:68:1: warning: control reaches end of non-void function [-Wreturn-type] 68 | }
+	* | ^
+	*/
+	JSONToken token;
+	return token;
 }
 //exit(4) file could not be open
 //exit(5) wrong input in file

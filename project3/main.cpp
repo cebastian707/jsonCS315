@@ -2,12 +2,12 @@
 * CS315 DSA Reading Json Files
 * Project 3 Phase one
 */
-
 #include<iostream>
 #include<fstream>
 #include"JSONTokenizer.hpp"
 #include"JSONToken.hpp"
 #include"JSONParser.hpp"
+#include"EntityInstance.hpp"
 
 
 int main(int argc, char* argv[]) {
@@ -23,9 +23,12 @@ int main(int argc, char* argv[]) {
     JSONTokenizer jsonTokenizer(argv[1]); // The Tokenizer opens and reads from the input file.
     JSONToken token = jsonTokenizer.getToken();
     JSONParser par(argv[1]);
+    EntityInstance intance;
 
-    par.parseJSONObject();
-    par.parseAPair();
+    intance = par.parseJSONObject();
+
+    intance.print();
+
 
     /*
     while (!token.endOfFile()) {

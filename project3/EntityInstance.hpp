@@ -1,3 +1,7 @@
+/*By::Cebastian Santiago 
+* CS315 Project 3
+* EntityInstance Class 
+*/
 #pragma once
 #ifndef EntityInstance_HPP
 #define EntityInstance_HPP
@@ -18,7 +22,10 @@ public:
                       // of attribute, Close. You will need to add more such functions
                       // to this class.
 private:
+    double close_value = 0;
+    std::vector<std::string> key;
     std::vector<Pair> entityPairs;
+    int nums = 0;
     // more variables here as necessary.
 };
 #endif // !EntityInstance_HPP

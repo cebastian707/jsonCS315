@@ -10,7 +10,7 @@
 
 
 bool JSONToken::isCloseBrace() {
-	if (_character == '}' || _character == ']') {
+	if (_character == '}' || _character == '{') {
 		return true;
 	}
 	return false;
@@ -75,6 +75,7 @@ JSONToken::JSONToken() {
 	_eof = false;
 	_character = '\n';
 	_string = " ";
+	_isnumber = false;
 }
 
 JSONToken::JSONToken(const char c) {
@@ -93,7 +94,7 @@ JSONToken::JSONToken(const std::string input) {
 	_eof = false;
 	_ischarcter = false;
 	_character = ' ';
-
+	_isnumber = false;
 }
 
 void JSONToken::print() {

@@ -1,3 +1,7 @@
+/*By Cebastian Santiago 
+* CS315 JSONParser class header
+* 
+*/
 #pragma once
 #ifndef JSONParser_HPP
 #define JSONParser_HPP
@@ -5,12 +9,12 @@
 #include"JSONTokenizer.hpp"
 #include"EntityInstance.hpp"
 #include"JSONToken.hpp"
-#include<fstream>
+#include"Pair.hpp"
 
 
 class JSONParser {
 public:
-    JSONParser(const std::string& nameOfInputFile);
+    JSONParser(std::string nameOfInputFile);
     Pair parseAPair();
     EntityInstance parseJSONObject();
     //EntitySet parseJSONEntity();
