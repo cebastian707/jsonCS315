@@ -27,6 +27,8 @@ public:
 	/// <returns></returns>
 	JSONToken getToken();
 
+	int whitespaces(int white);
+
 private:
 	std::string inputFileName;
 	std::fstream inputStream;

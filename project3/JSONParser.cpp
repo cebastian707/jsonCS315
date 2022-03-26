@@ -20,6 +20,7 @@ Pair JSONParser::parseAPair() {
  
     attribute = token._ISString();  
     attribute.push_back(' ');
+
     //then we except the colon add that 
     //to the string
     token = tokenizer.getToken();
