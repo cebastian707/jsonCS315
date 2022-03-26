@@ -7,6 +7,12 @@
 #include<iomanip>
 #include<iostream>
 
+bool JSONToken::iswhitespace() {
+	if (_character == ' ') {
+		return true;
+	}
+	return false;
+}
 
 
 bool JSONToken::isCloseBrace() {

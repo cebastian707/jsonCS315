@@ -24,9 +24,14 @@ void EntityInstance::print() {
 		}
 		
 		std::cout << entityPairs[i].stringValue();
-		std::cout << ',' << std::endl;
 		
+		
+		if (i != entityPairs.size()-1){
+			std::cout << ',' << std::endl;
+		}
 	}
+	std::cout << std::endl;
+
 }
 
 double EntityInstance::close() {

@@ -97,6 +97,13 @@ public:
 	/// @brief checks if charcter is {
 	/// @returns true if it is else returns false; 
 	bool isCloseBrace();
+
+	/// <summary>
+	/// Checks if token whitespace
+	/// returns true
+	/// </summary>
+	/// <returns></returns>
+	bool iswhitespace();
 private:
 	std::string _string;
 	char _character;

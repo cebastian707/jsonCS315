@@ -10,12 +10,16 @@
 #include"Pair.hpp"
 
 Pair JSONParser::parseAPair() {
-    //get the current token
-    JSONToken token = tokenizer.getToken();
-    
     //we except a string and we also add the qoutes ""
     std::string attribute = "";
     std::string attribute_stringvalue = "";
+
+
+    //get the current token
+    JSONToken token = tokenizer.getToken();
+
+
+
 
  
     attribute = token._ISString();  

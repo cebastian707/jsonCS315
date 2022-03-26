@@ -24,81 +24,79 @@ bool JSONTokenizer::ischarcter(char c) {
 }
 
 JSONToken JSONTokenizer::getToken() {
-	if (!inputStream.is_open()) {
-		std::cout << "Input stream in Tokenizer::getToken is not open. Terminating...\n";
-		exit(4);
-	}
-
-	char c;
-	int white = 0;
-	while (inputStream >>std::noskipws>> c) {
-		if (c == '\n' || c == ' ') {
-			if (c == ' ') {
-				white += 1;
-			}
+		if (!inputStream.is_open()) {
+			std::cout << "Input stream in Tokenizer::getToken is not open. Terminating...\n";
+			exit(4);
 		}
 
-		else if (c == '{') {
-			while (inputStream >> c) {
-				if (c == '\n'||c == ' ') {
-					if (c == ' ') {
-						white += 1;
-					}
-				}
-
-				else if (c == '{') {
-					JSONToken token(c);
-					return token;
-				}
-				break;
-			}
-		}
+		 char c;
+		 while (inputStream >> std::noskipws >> c) {
+			 if (c == '\n' || c==' ') {
+				 continue;
+			 }
 
 
-		else if (c == '"') {
-			std::string input = "";
-			input.push_back(c);
+			 else if (c == '[') {
+				 while (inputStream >> c) {
+					 if (c == '{') {
+						 JSONToken token(c);
+						 return token;
+					 }
+				 }
+			 
 
-			while (inputStream >> c) {
-				if (c == '"') {
-					input.push_back(c);
-					break;
-				}
-				input.push_back(c);
-			}
-
-			JSONToken token(input);
-			return token;
-		}
-
-		else if (inputStream.eof()) {
-			JSONToken token;
-			token.Eof();
-			return token;
-		}
+			 }
 
 
-		else if (isdigit(c)) {
-			inputStream.putback(c);
-			double number = 0;
-			inputStream >> number;
-			JSONToken token;
-			token.make_number(number);
-			return token;
-		}
+			 else  if (c == '"') {
+				 std::string input = "";
+				 input.push_back('"');
 
-		else if (ischarcter(c)) {
-			JSONToken token(c);
-			return token;
-		}
+				 while (inputStream >>std::noskipws>> c) {
+					 if (c == '"') {
+						 input.push_back('"');
+						 break;
+					 }
 
-		else if (!ischarcter(c)) {
-			std::cout << "Unexpected character in input ->" << c << "<-\n";
-			std::cout << "Terminating...\n";
-			exit(5);
-		}
+					 input.push_back(c);
+				 }
 
-	}
+				 JSONToken token(input);
+				 return token;
+			 }
+
+			 else if (inputStream.eof()) {
+				 JSONToken token;
+				 token.Eof();
+				 return token;
+			 }
+
+
+			 else if (isdigit(c)) {
+				 inputStream.putback(c);
+				 double number = 0;
+				 inputStream >> number;
+				 JSONToken token;
+				 token.make_number(number);
+				 return token;
+			 }
+
+			 else if (ischarcter(c)) {
+				 JSONToken token(c);
+				 return token;
+			 }
+
+			 else if (!ischarcter(c)) {
+				 std::cout << "Unexpected character in input ->" << c << "<-\n";
+				 std::cout << "Terminating...\n";
+				 exit(5);
+			 }
+
+
+		 }
+		
+
+
 		/*To aviod this complier warning even though the program should'nt reach all the way here
 		* JSONTokenizer.cpp: In member function ‘JSONToken JSONTokenizer::getToken()’:
 		*JSONTokenizer.cpp:68:1: warning: control reaches end of non-void function [-Wreturn-type] 68 | }
