@@ -11,6 +11,7 @@
 
 class EntityInstance {
 public:
+    EntityInstance();
     void addPair(Pair& pair); // Add a new pair to this entity.
     int numAttributes();  // how many pairs are in this instance?
     std::vector<std::string> attributeNames();
@@ -22,10 +23,10 @@ public:
                       // of attribute, Close. You will need to add more such functions
                       // to this class.
 private:
-    double close_value = 0;
+    double close_value;
     std::vector<std::string> key;
     std::vector<Pair> entityPairs;
-    int nums = 0;
+    int nums;
     // more variables here as necessary.
 };
 #endif // !EntityInstance_HPP

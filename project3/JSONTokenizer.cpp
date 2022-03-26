@@ -28,10 +28,10 @@ JSONToken JSONTokenizer::getToken() {
 	}
 
 	char c;
-	inputStream >> c;
+	inputStream  >> c;
 
 	if (c == '[') {
-		while (inputStream >> c){
+		while (inputStream  >> c){
 			if (c == '{') {
 				JSONToken token(c);
 					return token;
