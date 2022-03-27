@@ -32,7 +32,7 @@ void EntityInstance::print() {
 		}
 	}
 	std::cout << std::endl;
-	std::cout << std::setw(6) << "}" << std::endl;
+	std::cout << std::setw(6) << "}";
 }
 
 double EntityInstance::close() {
@@ -63,6 +63,3 @@ void EntityInstance::addPair(Pair& pair) {
 int EntityInstance::numAttributes() {
 	return nums;
 }
-
-
-

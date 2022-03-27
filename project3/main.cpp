@@ -8,7 +8,7 @@
 #include"JSONToken.hpp"
 #include"JSONParser.hpp"
 #include"EntityInstance.hpp"
-
+#include"EntitySet.hpp"
 
 int main(int argc, char* argv[]) {
     std::ifstream inputStream;
@@ -20,15 +20,16 @@ int main(int argc, char* argv[]) {
     inputStream.close();
     
 
-    JSONTokenizer jsonTokenizer(argv[1]); // The Tokenizer opens and reads from the input file.
-    JSONToken token = jsonTokenizer.getToken();
+    //JSONTokenizer jsonTokenizer(argv[1]); // The Tokenizer opens and reads from the input file.
+    //JSONToken token = jsonTokenizer.getToken();
     JSONParser par(argv[1]);
-    EntityInstance intance;
-
-    intance = par.parseJSONObject();
-    intance.close();
-    intance.print();
-
+    //EntityInstance intance;
+    EntitySet set;
+    //intance = par.parseJSONObject();
+    //intance.close();
+    //intance.print();
+    set = par.parseJSONEntity();
+    set.print();
 
     /*
     while (!token.endOfFile()) {

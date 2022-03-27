@@ -83,11 +83,16 @@ EntityInstance JSONParser::parseJSONObject() {
 }
 
 EntitySet JSONParser::parseJSONEntity() {
+    EntitySet set;
     EntityInstance instance;
-
+    JSONToken token;
     do{
-
-
       instance = parseJSONObject();
-    } while (true);
+      set.addEntity(instance);
+      token = tokenizer.getToken();
+
+
+    } while (!token.iscloseBracket());
+
+    return set;
 }

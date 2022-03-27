@@ -7,10 +7,6 @@
 #include<iomanip>
 #include<iostream>
 
-
-
-
-
 bool JSONToken::iscloseBracket() {
 	if (_character == ']') {
 		return true;
