@@ -7,9 +7,7 @@
 #include"JSONToken.hpp"
 #include<string>
 
-int JSONTokenizer::whitespaces(int white) {
-	return white;
-}
+
 
 JSONTokenizer::JSONTokenizer(const std::string& inputFile):inputFileName{inputFile}{
 	inputStream.open(inputFile, std::ios::in);

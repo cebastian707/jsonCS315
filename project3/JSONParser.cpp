@@ -7,6 +7,7 @@
 #include"JSONTokenizer.hpp"
 #include"JSONToken.hpp"
 #include"EntityInstance.hpp"
+#include"EntitySet.hpp"
 #include"Pair.hpp"
 
 Pair JSONParser::parseAPair() {
@@ -18,11 +19,9 @@ Pair JSONParser::parseAPair() {
     //get the current token
     JSONToken token = tokenizer.getToken();
 
-
-
-
- 
     attribute = token._ISString();  
+    
+    //Push Back a Space
     attribute.push_back(' ');
 
     //then we except the colon add that 
@@ -47,15 +46,9 @@ Pair JSONParser::parseAPair() {
     return pair;
 }
 
-
-
-
-
-
 JSONParser::JSONParser(std::string nameOfInputFile):tokenizer{nameOfInputFile} {
        
 }
-
 
 EntityInstance JSONParser::parseJSONObject() {
      // parseJSONObject is responsible for parsing a JSON object. As such,
@@ -87,4 +80,14 @@ EntityInstance JSONParser::parseJSONObject() {
          exit(1);
      }
      return instance;
+}
+
+EntitySet JSONParser::parseJSONEntity() {
+    EntityInstance instance;
+
+    do{
+
+
+      instance = parseJSONObject();
+    } while (true);
 }

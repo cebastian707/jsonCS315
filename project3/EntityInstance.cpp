@@ -16,8 +16,9 @@ EntityInstance::EntityInstance() {
 }
 
 void EntityInstance::print() {
+	std::cout << std::setw(6) << "{" << std::endl;
 	for (size_t i = 0; i < entityPairs.size(); i++) {
-		std::cout << entityPairs[i].attributeName()<< " ";
+		std::cout <<"      "<< entityPairs[i].attributeName() << " ";
 
 		if (entityPairs[i].isDouble()) {
 			std::cout << std::setprecision(13) << entityPairs[i].numberValue();
@@ -31,12 +32,13 @@ void EntityInstance::print() {
 		}
 	}
 	std::cout << std::endl;
-
+	std::cout << std::setw(6) << "}" << std::endl;
 }
 
 double EntityInstance::close() {
+	std::string close = "\"Close\" :";
 	for (size_t i = 0; i < entityPairs.size(); i++) {
-		if (entityPairs[i].attributeName() == "Close:") {
+		if (entityPairs[i].attributeName() == close) {
 			close_value = entityPairs[i].numberValue();
 			break;
 		}

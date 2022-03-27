@@ -8,6 +8,7 @@
 #include<string>
 #include"JSONTokenizer.hpp"
 #include"EntityInstance.hpp"
+#include"EntitySet.hpp"
 #include"JSONToken.hpp"
 #include"Pair.hpp"
 
@@ -17,7 +18,7 @@ public:
     JSONParser(std::string nameOfInputFile);
     Pair parseAPair();
     EntityInstance parseJSONObject();
-    //EntitySet parseJSONEntity();
+    EntitySet parseJSONEntity();
 
 private:
     JSONTokenizer tokenizer; // the input file name is used to create an instance of JSONTokenizer

@@ -26,7 +26,7 @@ int main(int argc, char* argv[]) {
     EntityInstance intance;
 
     intance = par.parseJSONObject();
-
+    intance.close();
     intance.print();
 
 

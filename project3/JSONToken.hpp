@@ -98,12 +98,10 @@ public:
 	/// @returns true if it is else returns false; 
 	bool isCloseBrace();
 
-	/// <summary>
-	/// Checks if token whitespace
-	/// returns true
-	/// </summary>
-	/// <returns></returns>
-	bool iswhitespace();
+	/// @brief checks if charcter is equal to ]
+	/// @returns true if charcter is equal to ] else return false 
+	bool iscloseBracket();
+
 private:
 	std::string _string;
 	char _character;
