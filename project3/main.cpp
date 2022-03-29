@@ -20,13 +20,13 @@ int main(int argc, char* argv[]) {
     }
     inputStream.close();
     
+ 
     JSONParser par(argv[1]);
     EntitySet set;
     EntityInstance instance;
-    //set = par.parseJSONEntity();
-    //set.printInJSON();
-    par.parseJSONEntity();
-    instance.attributeNames();
+    set = par.parseJSONEntity();
+    set.printInJSON();
+    
     
     return 0;
 }

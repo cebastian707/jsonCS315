@@ -19,7 +19,19 @@ void Pair::printInCSV() {
 
 
 void Pair::printInJSON(int numspaces) {
+	for (size_t i = 0; i <= numspaces; i++){
+		std::cout << " ";
+	}
 
+	std::cout << std::setprecision(13) << _attributeName;
+
+	if (isDouble()){
+		std::cout << _attributeNumberValue << std::endl;
+	}
+	
+	else{
+		std::cout << _attributeStringValue << std::endl;
+	}
 }
 
 

@@ -11,7 +11,7 @@
 #include"Pair.hpp"
 
 Pair JSONParser::parseAPair() {
-    //we except a string and we also add the qoutes ""
+    //we except a string
     std::string attribute = "";
     std::string attribute_stringvalue = "";
 
@@ -37,12 +37,13 @@ Pair JSONParser::parseAPair() {
     if (token.is_number()){
         double nums = token.nums();
         Pair pair(attribute, nums);
+        pair.printInJSON(5);
         return pair;
     }
 
     attribute_stringvalue = token._ISString();
     Pair pair(attribute, attribute_stringvalue);
-    
+    pair.printInJSON(5);
     return pair;
 }
 
