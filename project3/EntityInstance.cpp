@@ -10,12 +10,19 @@
 #include"JSONParser.hpp"
 
 
+
+void EntityInstance::printInCSV() {
+
+}
+
+
+
 EntityInstance::EntityInstance() {
 	close_value = 0;
 	nums = 0;
 }
 
-void EntityInstance::print() {
+void EntityInstance::printInJSON() {
 	std::cout << std::setw(6) << "{" << std::endl;
 	for (size_t i = 0; i < entityPairs.size(); i++) {
 		std::cout <<"      "<< entityPairs[i].attributeName() << " ";
@@ -25,7 +32,6 @@ void EntityInstance::print() {
 		}
 		
 		std::cout << entityPairs[i].stringValue();
-		
 		
 		if (i != entityPairs.size()-1){
 			std::cout << ',' << std::endl;

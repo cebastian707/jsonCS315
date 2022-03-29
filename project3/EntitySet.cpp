@@ -5,13 +5,11 @@
 #include"EntityInstance.hpp"
 #include"EntitySet.hpp"
 
-
-
-void EntitySet::print() {
+void EntitySet::printInJSON() {
 	std::cout << "[" << std::endl;
 
 	for (size_t i = 0; i < instances.size(); i++) {
-		instances[i].print();
+		instances[i].printInJSON();
 		if (i != instances.size()-1){
 			std::cout << "," << std::endl;
 		}

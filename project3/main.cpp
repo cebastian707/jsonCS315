@@ -1,6 +1,6 @@
-/*Created by professor Ali A. Kooshesh SSU
+/*Created by professor Ali A. Kooshesh SSU and modified by Cebastian Santiago
 * CS315 DSA Reading Json Files
-* Project 3 Phase one
+* Project 3 Phase Two
 */
 #include<iostream>
 #include<fstream>
@@ -9,6 +9,7 @@
 #include"JSONParser.hpp"
 #include"EntityInstance.hpp"
 #include"EntitySet.hpp"
+#include"Pair.hpp"
 
 int main(int argc, char* argv[]) {
     std::ifstream inputStream;
@@ -19,24 +20,14 @@ int main(int argc, char* argv[]) {
     }
     inputStream.close();
     
-
-    //JSONTokenizer jsonTokenizer(argv[1]); // The Tokenizer opens and reads from the input file.
-    //JSONToken token = jsonTokenizer.getToken();
     JSONParser par(argv[1]);
-    //EntityInstance intance;
     EntitySet set;
-    //intance = par.parseJSONObject();
-    //intance.close();
-    //intance.print();
-    set = par.parseJSONEntity();
-    set.print();
-
-    /*
-    while (!token.endOfFile()) {
-        token.print();
-        token = jsonTokenizer.getToken();
-    }
-    */
+    EntityInstance instance;
+    //set = par.parseJSONEntity();
+    //set.printInJSON();
+    par.parseJSONEntity();
+    instance.attributeNames();
+    
     return 0;
 }
 //exit(2) file could not be open 

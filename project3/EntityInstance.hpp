@@ -15,7 +15,8 @@ public:
     void addPair(Pair& pair); // Add a new pair to this entity.
     int numAttributes();  // how many pairs are in this instance?
     std::vector<std::string> attributeNames();
-    void print();   // prints this object. 
+    void printInCSV();
+    void printInJSON();   // prints this object. 
     // more member functions here when necessary.
 
     double close();   // an accessor function that return the

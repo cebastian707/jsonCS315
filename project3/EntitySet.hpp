@@ -11,7 +11,7 @@ class EntitySet {
 public:
     EntitySet();
     void addEntity(EntityInstance&sets);
-    void print();    // prints all instances of this Entity.
+    void printInJSON();    // prints all instances of this Entity.
     std::vector<EntityInstance> getEntityInstances(); // returns "instances"
      // more member functions here.
 

@@ -14,7 +14,7 @@ JSONTokenizer::JSONTokenizer(const std::string& inputFile):inputFileName{inputFi
 }
 
 bool JSONTokenizer::ischarcter(char c) {
-	if (c == '[' || c ==']' || c== '{' || c == '}' || c == '"' || c == ':' || c == ',') {
+	if (c == '[' || c ==']' || c== '{' || c == '}' || c == '"' || c == ':' || c == ',' || c == ' ') {
 		return true;
 	}
 
@@ -83,13 +83,14 @@ JSONToken JSONTokenizer::getToken() {
 				 JSONToken token(c);
 				 return token;
 			 }
-
-			 else if (!ischarcter(c)) {
-				 std::cout << "Unexpected character in input ->" << c << "<-\n";
-				 std::cout << "Terminating...\n";
-				 exit(5);
+			 
+			  
+			 else if(!ischarcter(c)) {
+				std::cout << "Unexpected character in input ->" << c << "<-\n";
+				std::cout << "Terminating...\n";
+				exit(5);
 			 }
-
+			 
 
 		 }
 		

@@ -42,7 +42,7 @@ Pair JSONParser::parseAPair() {
 
     attribute_stringvalue = token._ISString();
     Pair pair(attribute, attribute_stringvalue);
-
+    
     return pair;
 }
 
@@ -86,12 +86,11 @@ EntitySet JSONParser::parseJSONEntity() {
     EntitySet set;
     EntityInstance instance;
     JSONToken token;
+
     do{
       instance = parseJSONObject();
       set.addEntity(instance);
       token = tokenizer.getToken();
-
-
     } while (!token.iscloseBracket());
 
     return set;

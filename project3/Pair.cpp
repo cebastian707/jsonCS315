@@ -3,7 +3,25 @@
 * of the class
 */
 #include<iostream>
+#include<iomanip>
 #include"Pair.hpp"
+
+
+void Pair::printInCSV() {
+	if (isDouble()){
+		std::cout << std::setprecision(13)<< _attributeNumberValue << std::endl;
+	}
+
+	else{
+		std::cout << _attributeStringValue << std::endl;
+	}
+}
+
+
+void Pair::printInJSON(int numspaces) {
+
+}
+
 
 
 Pair::Pair(std::string attributeName, std::string attributeValue) {
