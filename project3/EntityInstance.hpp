@@ -5,8 +5,8 @@
 #pragma once
 #ifndef EntityInstance_HPP
 #define EntityInstance_HPP
-#include<string>
 #include"Pair.hpp"
+#include<string>
 #include<vector>
 
 class EntityInstance {

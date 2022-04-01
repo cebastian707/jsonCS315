@@ -23,10 +23,10 @@ void Pair::printInJSON(int numspaces) {
 		std::cout << " ";
 	}
 
-	std::cout << std::setprecision(13) << _attributeName;
+	std::cout  << _attributeName;
 
 	if (isDouble()){
-		std::cout << _attributeNumberValue << std::endl;
+		std::cout << std::setprecision(13) << _attributeNumberValue << std::endl;
 	}
 	
 	else{
