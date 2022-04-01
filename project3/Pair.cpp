@@ -9,11 +9,11 @@
 
 void Pair::printInCSV() {
 	if (isDouble()){
-		std::cout << std::setprecision(13)<< _attributeNumberValue << std::endl;
+		std::cout << std::setprecision(13)<< _attributeNumberValue << " ";
 	}
 
 	else{
-		std::cout << _attributeStringValue << std::endl;
+		std::cout << _attributeStringValue <<" ";
 	}
 }
 

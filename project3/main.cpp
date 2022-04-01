@@ -4,6 +4,8 @@
 */
 #include<iostream>
 #include<fstream>
+#include<vector>
+#include<string>
 #include"JSONTokenizer.hpp"
 #include"JSONToken.hpp"
 #include"JSONParser.hpp"
@@ -24,10 +26,12 @@ int main(int argc, char* argv[]) {
     JSONParser par(argv[1]);
     EntitySet set;
     EntityInstance instance;
-    set = par.parseJSONEntity();
-    set.printInJSON();
+    std::vector<std::string> keyValues = {"Date","Close","Volume","Open","Dividends","High"};
     
+    par.parseJSONEntity().printInCSV(keyValues);
     
+
+
     return 0;
 }
 //exit(2) file could not be open 
