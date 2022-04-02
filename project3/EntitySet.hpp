@@ -4,6 +4,7 @@
 #pragma once
 #ifndef EntitySet_HPP
 #define EntitySet_HPP
+#include<fstream>
 #include<string>
 #include<vector>
 #include"EntityInstance.hpp"
@@ -14,6 +15,7 @@ public:
     void addEntity(EntityInstance&sets);
     void printInJSON();    // prints all instances of this Entity.
     void printInCSV(std::vector<std::string> key_values);
+    void printIncsv(std::ofstream& out, std::vector<std::string> key);
     std::vector<EntityInstance> getEntityInstances(); // returns "instances"
      // more member functions here.
 

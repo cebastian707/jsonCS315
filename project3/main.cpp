@@ -22,13 +22,21 @@ int main(int argc, char* argv[]) {
     }
     inputStream.close();
     
- 
+    std::ofstream output;
     JSONParser par(argv[1]);
     EntitySet set;
-    EntityInstance instance;
-    std::vector<std::string> keyValues = {"Date","Close","Volume","Open","Dividends","High"};
-    
-    par.parseJSONEntity().printInCSV(keyValues);
+    std::vector<std::string> keyValues = { "Date","Open","High","Low","Close","Volume","EMA-12", "EMA-26", "MACD", "Signal" };
+    //std::vector<std::string> keyValues = { "Date" , "Volume", "Close", "EMA-12", "EMA-26", "MACD", "Signal" };
+
+    output.open(argv[2], std::ios::out | std::ios::app);
+
+
+
+    set = par.parseJSONEntity();
+
+
+    set.printInCSV(keyValues);
+    set.printIncsv(output, keyValues);
     
 
 

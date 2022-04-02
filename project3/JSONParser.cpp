@@ -21,6 +21,8 @@ Pair JSONParser::parseAPair() {
 
     attribute = token._ISString();  
     
+    //Push Back a Space
+    attribute.push_back(' ');
 
     //then we except the colon add that 
     //to the string
@@ -28,8 +30,7 @@ Pair JSONParser::parseAPair() {
     char colon = token.is_charcter();
     attribute.push_back(colon);
 
-    //Push Back a Space
-    attribute.push_back(' ');
+
 
 
     //check if token is either a string value 
@@ -39,14 +40,14 @@ Pair JSONParser::parseAPair() {
     if (token.is_number()){
         double nums = token.nums();
         Pair pair(attribute, nums);
-        pair.printInJSON(5);
+        //pair.printInJSON(5);
         //pair.printInCSV();
         return pair;
     }
 
     attribute_stringvalue = token._ISString();
     Pair pair(attribute, attribute_stringvalue);
-    pair.printInJSON(5);
+    //pair.printInJSON(5);
     //pair.printInCSV();
     return pair;
 }

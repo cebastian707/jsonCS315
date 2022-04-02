@@ -19,19 +19,26 @@ public:
     void printInJSON();   // prints this object. 
     // more member functions here when necessary.
 
+    void printIncsv(std::ofstream& out, std::vector<std::string> key);
+    bool _isLow(std::string key);
     bool _ishigh(std::string key);
     bool _isdividends(std::string key);
     bool _isclose(std::string key);
     bool _isdate(std::string key);
     bool _isvolume(std::string key);
     bool _isopen(std::string key);
+    bool _istimestamp(std::string key);
+    bool _isstocksplit(std::string key);
 
 
+    double stocksplit();
+    double low();
     double high();
     double dividends();
     double open();
     double volume();
     std::string date();
+    std::string timestamp();
     double close();   // an accessor function that return the
                       // value associated with an attribute. In this case, the value.
                       // of attribute, Close. You will need to add more such functions

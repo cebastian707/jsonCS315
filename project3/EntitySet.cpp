@@ -10,13 +10,25 @@
 
 void EntitySet::printInCSV(std::vector<std::string> key_values){ 
 	for (size_t i = 0; i < key_values.size(); i++) {
-		std::cout << "   "<< key_values[i] << ",           ";
+		std::cout<<"   " << key_values[i] << ",         ";
 	}
 
 	for (size_t i = 0; i < instances.size(); i++) {
 		instances[i].printInCSV(key_values);
 	}
 }
+
+void EntitySet::printIncsv(std::ofstream& out, std::vector<std::string> key){
+	for (size_t i = 0; i < key.size(); i++) {
+		out << key[i] << ",";
+	}
+
+	for (size_t i = 0; i < instances.size(); i++) {
+		instances[i].printIncsv(out, key);
+	}
+}
+
+
 
 
 void EntitySet::printInJSON() {

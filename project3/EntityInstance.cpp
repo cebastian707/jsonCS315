@@ -9,42 +9,113 @@
 #include"Pair.hpp"
 #include"JSONParser.hpp"
 
+void EntityInstance::printIncsv(std::ofstream& out, std::vector<std::string> key) {
+	out << std::endl;
+	for (size_t i = 0; i < key.size(); i++) {
+		if (_isclose(key[i])) {
+			out << std::fixed << std::setprecision(4) << close() << ",";
+		}
 
+		else if (_isdate(key[i])) {
+			out << date() << ",";
+		}
+
+		else if (_isvolume(key[i])) {
+			out << volume() << ",";
+		}
+
+
+		else if (_isopen(key[i])) {
+			out << std::fixed << std::setprecision(4) << open() << ",";
+
+		}
+
+		else if (_isdividends(key[i])) {
+			out << std::fixed << std::setprecision(4) << dividends() << ",";
+		}
+
+		else if (_ishigh(key[i])) {
+			out << std::fixed << std::setprecision(4) << high() << ",";
+		}
+
+		else if (_isLow(key[i])) {
+			out << std::fixed << std::setprecision(4) << low() << ",";
+		}
+
+		else if (_istimestamp(key[i])) {
+			out << timestamp() << ",";
+		}
+
+		else if (_isstocksplit(key[i])) {
+			out << std::fixed << std::setprecision(4) << stocksplit() << ",";
+		}
+
+
+		else {
+			out << "    ";
+		}
+
+	}
+}
+
+bool EntityInstance::_isLow(std::string key){
+	std::string low = "Low";
+
+	if (low == key){
+		return true;
+	}
+
+	return false;
+}
 
 void EntityInstance::printInCSV(std::vector<std::string> key_values) {
 	std::cout << std::endl;
 	
 	for (size_t i = 0; i < key_values.size(); i++) {
 		if (_isclose(key_values[i])) {
-			std::cout  << "        "<< std::setprecision(13) << close() << ",  ";
+			std::cout<< "    " << std::fixed << std::setprecision(4) << close() << ",";
 		}
 		
 		else if(_isdate(key_values[i])){
-			std::cout <<" " << date() << ",";
+			std::cout  << date() << ",       ";
 		}
 		
 		else if (_isvolume(key_values[i])) {
-			std::cout <<"  "<< std::setw(10) << std::setprecision(13) << volume() << ",          ";
+			std::cout<< "       " << std::fixed << std::setprecision(4) << volume() << ",";
 		}
 
 		
 		else if (_isopen(key_values[i])) {
-			std::cout  << std::setprecision(13) << open() << ",    ";
+			std::cout  << "   " << std::fixed << std::setprecision(4) << open() << ",";
 		}
 		
 		else if (_isdividends(key_values[i])) {
-			std::cout<<std::setw(10)<< std::setprecision(13) << dividends() << ",";
+			std::cout<<"    " << std::setprecision(13) << dividends() << ",";
 		}
 
+		
 		else if (_ishigh(key_values[i])) {
-			std::cout << std::setw(10) << std::setprecision(13) << high() << ",";
-		}
-
-
-		else{
-			std::cout <<" "<< std::endl;
+			std::cout << "       " << std::fixed << std::setprecision(4) << high() << ",";
 		}
 		
+
+		else if (_isLow(key_values[i])) {
+			std::cout << "       " <<std::fixed << std::setprecision(4) << low() << ",";
+		}
+
+
+		else if (_istimestamp(key_values[i])) {
+			std::cout << "      " << timestamp() << ",";
+		}
+
+		else if (_isstocksplit(key_values[i])){
+			std::cout << "            " << std::fixed << std::setprecision(4) << stocksplit() << ",";
+		}
+
+		else{
+			std::cout <<" ";
+		}
+	
 	}
 }
 
@@ -73,6 +144,8 @@ void EntityInstance::printInJSON() {
 	std::cout << std::endl;
 	std::cout << std::setw(6) << "}";
 }
+
+
 
 bool EntityInstance::_ishigh(std::string key){
 	std::string high = "High";
@@ -132,6 +205,51 @@ bool EntityInstance::_isopen(std::string key){
 	return false;
 }
 
+bool EntityInstance::_istimestamp(std::string key){
+	std::string time = "Timestamp";
+
+	if (key == time){
+		return true;
+	}
+
+	return false;
+}
+
+bool EntityInstance::_isstocksplit(std::string key){
+	std::string split = "Stock Splits";
+
+	if (key == split){
+		return true;
+	}
+
+
+	return false;
+}
+
+double EntityInstance::stocksplit(){
+	std::string stock = "\"Stock Splits\" :";
+
+	for (size_t i = 0; i < entityPairs.size(); i++) {
+		if (stock == entityPairs[i].attributeName()) {
+			return entityPairs[i].numberValue();
+		}
+	}
+
+	return 0.0;
+}
+
+double EntityInstance::low(){
+	std::string low = "\"Low\" :";
+
+	for (size_t i = 0; i < entityPairs.size(); i++) {
+		if (low == entityPairs[i].attributeName()) {
+			return entityPairs[i].numberValue();
+		}
+	}
+
+	return 0.0;
+}
+
 double EntityInstance::high(){
 	std::string high = "\"High\" :";
 
@@ -188,6 +306,17 @@ std::string EntityInstance::date(){
 		}
 	}
 
+	return std::string();
+}
+
+std::string EntityInstance::timestamp(){
+	std::string time = "\"Timestamp\" :";
+
+	for (size_t i = 0; i < entityPairs.size(); i++) {
+		if (time == entityPairs[i].attributeName()) {
+			return entityPairs[i].stringValue();
+		}
+	}
 	return std::string();
 }
 
