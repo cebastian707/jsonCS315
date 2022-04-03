@@ -1,3 +1,5 @@
+#include<iostream>
+#include<iomanip>
 #include "EquityStats.hpp"
 #include"Pair.hpp"
 
@@ -5,31 +7,27 @@ EquityStats::EquityStats(EntitySet& instanceOfEntitySet){
 	entityset.push_back(instanceOfEntitySet);
 }
 
-double EquityStats::calculateExponentialMovingAverage(double tweleve){
+void EquityStats::calculateExponentialMovingAverage(double days){
 	startinstance();
-	average(tweleve);
-	
-
-
-
-
-	return 0.0;
-}
-
-double EquityStats::average(double avgdays){
 	double count = 0;
 	double average = 0;
-    
+	double smooth = 2.0;
+	double smooth_answer = 0;
+	double _days = days;
+	double current = 0;
+
+
 	for (size_t i = 0; i < instance.size(); i++) {
-		if (i == avgdays) {
-			average = count / avgdays;
-			return average;
+		if (i == 0){
+			std::cout <<  instance[i].close() << std::endl;
+
 		}
-		count += instance[i].close();
+		
+		
 	}
-	
-	return 0.0;
 }
+
+
 
 
 

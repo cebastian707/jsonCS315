@@ -8,8 +8,7 @@
 class EquityStats{
 public:
 	EquityStats(EntitySet& instanceOfEntitySet);
-	double calculateExponentialMovingAverage(double tweleve);
-	double average(double avgdays);
+	void calculateExponentialMovingAverage(double tweleve);
 	
 private:
 	std::vector<EntityInstance> startinstance();
