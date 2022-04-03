@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="EntityInstance.cpp" />
     <ClCompile Include="EntitySet.cpp" />
+    <ClCompile Include="EquityStats.cpp" />
     <ClCompile Include="JSONParser.cpp" />
     <ClCompile Include="JSONToken.cpp" />
     <ClCompile Include="JSONTokenizer.cpp" />
@@ -150,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="EntityInstance.hpp" />
     <ClInclude Include="EntitySet.hpp" />
+    <ClInclude Include="EquityStats.hpp" />
     <ClInclude Include="JSONParser.hpp" />
     <ClInclude Include="JSONToken.hpp" />
     <ClInclude Include="JSONTokenizer.hpp" />

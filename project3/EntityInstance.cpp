@@ -145,8 +145,6 @@ void EntityInstance::printInJSON() {
 	std::cout << std::setw(6) << "}";
 }
 
-
-
 bool EntityInstance::_ishigh(std::string key){
 	std::string high = "High";
 
@@ -333,22 +331,19 @@ double EntityInstance::close() {
 
 
 std::vector<std::string>EntityInstance::attributeNames() {
-	return key;
+	std::vector<std::string> names;
+
+	for (size_t i = 0; i < entityPairs.size(); i++) {
+		names.push_back(entityPairs[i].attributeName());
+	}
+
+	return names;
 }
 
 
 void EntityInstance::addPair(Pair& pair) {
 	nums += 1;
 	entityPairs.push_back(pair);
-	std::string keys = "";
-
-	for (size_t i = 0; i < pair.attributeName().size(); i++) {
-		if (isalpha(pair.attributeName()[i])) {
-			keys.push_back(pair.attributeName()[i]);
-		}
-	}
-
-	key.push_back(keys);
 }
 
 int EntityInstance::numAttributes() {

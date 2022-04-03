@@ -12,6 +12,7 @@
 #include"EntityInstance.hpp"
 #include"EntitySet.hpp"
 #include"Pair.hpp"
+#include"EquityStats.hpp"
 
 int main(int argc, char* argv[]) {
     std::ifstream inputStream;
@@ -24,19 +25,19 @@ int main(int argc, char* argv[]) {
     
     std::ofstream output;
     JSONParser par(argv[1]);
-    EntitySet set;
+    EntitySet set; 
     std::vector<std::string> keyValues = { "Date","Open","High","Low","Close","Volume","EMA-12", "EMA-26", "MACD", "Signal" };
-    //std::vector<std::string> keyValues = { "Date" , "Volume", "Close", "EMA-12", "EMA-26", "MACD", "Signal" };
+  
 
-    output.open(argv[2], std::ios::out | std::ios::app);
-
+    //output.open(argv[2], std::ios::out | std::ios::app);
 
 
     set = par.parseJSONEntity();
-
-
-    set.printInCSV(keyValues);
-    set.printIncsv(output, keyValues);
+    EquityStats stats(set);
+    stats.calculateExponentialMovingAverage(12);
+   
+    // set.printInCSV(keyValues);
+   // set.printIncsv(output, keyValues);
     
 
 

@@ -36,6 +36,9 @@
     <ClCompile Include="EntitySet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EquityStats.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="JSONTokenizer.hpp">
@@ -54,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EntitySet.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EquityStats.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
