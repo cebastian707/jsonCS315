@@ -34,8 +34,9 @@ int main(int argc, char* argv[]) {
 
     set = par.parseJSONEntity();
     EquityStats stats(set);
-    stats.calculateExponentialMovingAverage(12);
-   
+    stats.calculateExponentialMovingAverage(12); 
+    stats.calculateExponentialMovingAverage(26);
+    stats.print(keyValues);
     // set.printInCSV(keyValues);
    // set.printIncsv(output, keyValues);
     
