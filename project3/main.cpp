@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
     std::vector<std::string> keyValues = { "Date","Open","High","Low","Close","Volume","EMA-12", "EMA-26", "MACD", "Signal" };
   
 
-    //output.open(argv[2], std::ios::out | std::ios::app);
+    output.open(argv[2], std::ios::out | std::ios::app);
 
 
     set = par.parseJSONEntity();
@@ -37,8 +37,11 @@ int main(int argc, char* argv[]) {
     stats.calculateExponentialMovingAverage(12); 
     stats.calculateExponentialMovingAverage(26);
     stats.print(keyValues);
-    // set.printInCSV(keyValues);
-   // set.printIncsv(output, keyValues);
+
+
+
+    //set.printInCSV(keyValues);
+    //set.printIncsv(output, keyValues);
     
 
 

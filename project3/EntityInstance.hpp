@@ -18,7 +18,6 @@ public:
     void printInCSV(std::vector<std::string> key_values);
     void printInJSON();   // prints this object. 
     // more member functions here when necessary.
-
     void printIncsv(std::ofstream& out, std::vector<std::string> key);
     bool _isLow(std::string key);
     bool _ishigh(std::string key);
@@ -29,8 +28,10 @@ public:
     bool _isopen(std::string key);
     bool _istimestamp(std::string key);
     bool _isstocksplit(std::string key);
+    bool _isEMA12(std::string key);
 
 
+    void EMA12();
     double stocksplit();
     double low();
     double high();

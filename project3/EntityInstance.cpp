@@ -112,6 +112,10 @@ void EntityInstance::printInCSV(std::vector<std::string> key_values) {
 			std::cout << "            " << std::fixed << std::setprecision(4) << stocksplit() << ",";
 		}
 
+		else if(_isEMA12(key_values[i])){
+			EMA12();
+		}
+
 		else{
 			std::cout <<" ";
 		}
@@ -222,6 +226,26 @@ bool EntityInstance::_isstocksplit(std::string key){
 
 
 	return false;
+}
+
+bool EntityInstance::_isEMA12(std::string key){
+	std::string ema = "EMA-12";
+
+	if (ema == key){
+		return true;
+	}
+
+	return false;
+}
+
+void EntityInstance::EMA12(){
+	std::string ema = "EMA-12";
+
+	for (size_t i = 0; i < entityPairs.size(); i++) {
+		if (ema == entityPairs[i].attributeName()) {
+			std::cout << "     "<< entityPairs[i].numberValue() << ",";
+		}
+	}
 }
 
 double EntityInstance::stocksplit(){
