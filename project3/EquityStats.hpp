@@ -10,6 +10,7 @@ public:
 	EquityStats(EntitySet& instanceOfEntitySet);
 	void calculateExponentialMovingAverage(double tweleve);
 	void print(std::vector<std::string> keys);
+	double firstaverage(double days);
 private:
 	std::vector<EntityInstance> startinstance();
 	std::vector<EntitySet> entityset;

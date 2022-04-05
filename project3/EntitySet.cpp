@@ -51,7 +51,7 @@ EntitySet::EntitySet() {
 
 }
 
-std::vector<EntityInstance> EntitySet::getEntityInstances() {
+std::vector<EntityInstance> EntitySet::getEntityInstances() {	
 	return instances;
 }
 
