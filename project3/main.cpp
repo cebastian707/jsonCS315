@@ -22,7 +22,6 @@ int main(int argc, char* argv[]) {
         exit(2);
     }
     inputStream.close();
-    
     std::ofstream output;
     JSONParser par(argv[1]);
     EntitySet set; 
@@ -35,7 +34,7 @@ int main(int argc, char* argv[]) {
     set = par.parseJSONEntity();
     EquityStats stats(set);
     stats.calculateExponentialMovingAverage(12); 
-    //stats.calculateExponentialMovingAverage(26);
+    stats.calculateExponentialMovingAverage(26);
     stats.print(keyValues);
 
 

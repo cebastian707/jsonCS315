@@ -24,11 +24,17 @@ void EquityStats::calculateExponentialMovingAverage(double days){
 	EntitySet set;
 	
 	average = firstaverage(days);
-	Pair pair("EMA-12", average);
-	instance[11].addPair(pair);
+	if (days == 12) {
+		Pair pair("EMA-12", average);
+		instance[11].addPair(pair);
+	}
+
+	else if (days == 26) {
+		Pair pair("EMA-12", average);
+		instance[25].addPair(pair);
+	}
 
 	entityset.clear();
-	//entityset.push_back(set);
 	
 	for (size_t i = days-1; i < instance.size(); i++) {
 		if (days == 12) {
