@@ -16,6 +16,7 @@
 
 int main(int argc, char* argv[]) {
     std::ifstream inputStream;
+    
     inputStream.open(argv[1], std::ios::in);    // open for reading
     if (!inputStream.is_open()) {
         std::cout << "Unable top open " << argv[1] << ". Terminating...";
@@ -28,7 +29,7 @@ int main(int argc, char* argv[]) {
     std::vector<std::string> keyValues = { "Date","Open","High","Low","Close","Volume","EMA-12", "EMA-26", "MACD", "Signal" };
   
 
-    output.open(argv[2], std::ios::out | std::ios::app);
+    //output.open(argv[2], std::ios::out | std::ios::app);
 
 
     set = par.parseJSONEntity();

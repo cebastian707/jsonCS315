@@ -10,7 +10,7 @@
 
 void EntitySet::printInCSV(std::vector<std::string> key_values){ 
 	for (size_t i = 0; i < key_values.size(); i++) {
-		std::cout<<"   " << key_values[i] << ",         ";
+		std::cout<< key_values[i] << ",";
 	}
 
 	for (size_t i = 0; i < instances.size(); i++) {

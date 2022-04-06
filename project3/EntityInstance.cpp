@@ -97,66 +97,66 @@ void EntityInstance::printInCSV(std::vector<std::string> key_values) {
 	
 	for (size_t i = 0; i < key_values.size(); i++) {
 		if (_isclose(key_values[i])) {
-			std::cout<< "    " << std::fixed << std::setprecision(4) << close() << ",";
+			std::cout<< std::fixed << std::setprecision(4) << close() << ",";
 		}
 		
 		else if(_isdate(key_values[i])){
-			std::cout  << date() << ",       ";
+			std::cout  << date() << ",";
 		}
 		
 		else if (_isvolume(key_values[i])) {
-			std::cout<< "       " << std::fixed << std::setprecision(4) << volume() << ",";
+			std::cout<<  std::fixed << std::setprecision(4) << volume() << ",";
 		}
 
 		
 		else if (_isopen(key_values[i])) {
-			std::cout  << "   " << std::fixed << std::setprecision(4) << open() << ",";
+			std::cout<< std::fixed << std::setprecision(4) << open() << ",";
 		}
 		
 		else if (_isdividends(key_values[i])) {
-			std::cout<<"    " << std::setprecision(13) << dividends() << ",";
+			std::cout << std::setprecision(13) << dividends() << ",";
 		}
 
 		
 		else if (_ishigh(key_values[i])) {
-			std::cout << "       " << std::fixed << std::setprecision(4) << high() << ",";
+			std::cout<< std::fixed << std::setprecision(4) << high() << ",";
 		}
 		
 
 		else if (_isLow(key_values[i])) {
-			std::cout << "       " <<std::fixed << std::setprecision(4) << low() << ",";
+			std::cout<<std::fixed << std::setprecision(4) << low() << ",";
 		}
 
 
 		else if (_istimestamp(key_values[i])) {
-			std::cout << "      " << timestamp() << ",";
+			std::cout<< timestamp() << ",";
 		}
 
 		else if (_isstocksplit(key_values[i])){
-			std::cout << "            " << std::fixed << std::setprecision(4) << stocksplit() << ",";
+			std::cout<< std::fixed << std::setprecision(4) << stocksplit() << ",";
 		}
 
 		else if(_isEMA12(key_values[i])){
 			if (EMA12() != 0) {
-				std::cout << "   " << std::fixed << std::setprecision(4) << EMA12() << ",";
+				std::cout << std::fixed << std::setprecision(4) << EMA12() << ",";
 			}
 		}
 
 		else if (_isEMA26(key_values[i])) {
 			if (EMA26() != 0) {
-				std::cout << "          " << std::fixed << std::setprecision(4) << EMA26() << ",";
+				std::cout << std::fixed << std::setprecision(4) << EMA26() << ",";
 			}
 		}
 
 		else if (_isMACD(key_values[i])){
 			if (MACD() != 0){
-				std::cout << "          " << std::fixed << std::setprecision(4) << MACD() << ",";
+				std::cout << std::fixed << std::setprecision(4) << MACD() << ",";
 			}
 		}
 
 		else if (_issignal(key_values[i])) {
 			if (Signal() != 0){
-				std::cout << "        " << std::fixed << std::setprecision(4) << Signal() << ",";
+				std::cout << std::fixed << std::setprecision(4) << Signal() << ",";
 			}
 		}
 
