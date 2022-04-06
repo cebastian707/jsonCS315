@@ -29,9 +29,15 @@ public:
     bool _istimestamp(std::string key);
     bool _isstocksplit(std::string key);
     bool _isEMA12(std::string key);
+    bool _isEMA26(std::string key);
+    bool _isMACD(std::string key);
+    bool _issignal(std::string key);
 
-
-    void EMA12();
+    
+    double Signal();
+    double MACD();
+    double EMA26();
+    double EMA12();
     double stocksplit();
     double low();
     double high();

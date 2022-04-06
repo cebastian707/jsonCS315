@@ -35,14 +35,10 @@ int main(int argc, char* argv[]) {
     EquityStats stats(set);
     stats.calculateExponentialMovingAverage(12); 
     stats.calculateExponentialMovingAverage(26);
+    stats.calculateMACD();
+    stats.calculateSignal(9);
     stats.print(keyValues);
-
-
-
-    //set.printInCSV(keyValues);
-    //set.printIncsv(output, keyValues);
-    
-
+    stats.printcsv(output,keyValues);
 
     return 0;
 }

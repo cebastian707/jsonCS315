@@ -24,7 +24,6 @@ void EntityInstance::printIncsv(std::ofstream& out, std::vector<std::string> key
 			out << volume() << ",";
 		}
 
-
 		else if (_isopen(key[i])) {
 			out << std::fixed << std::setprecision(4) << open() << ",";
 
@@ -48,6 +47,31 @@ void EntityInstance::printIncsv(std::ofstream& out, std::vector<std::string> key
 
 		else if (_isstocksplit(key[i])) {
 			out << std::fixed << std::setprecision(4) << stocksplit() << ",";
+		}
+
+		else if (_isEMA12(key[i])) {
+			if (EMA12() != 0) {
+				out<< std::fixed << std::setprecision(4) << EMA12() << ",";
+			}
+		}
+
+		else if (_isEMA26(key[i])) {
+			if (EMA26() != 0) {
+				out << std::fixed << std::setprecision(4) << EMA26() << ",";
+			}
+		}
+
+		else if (_isMACD(key[i])) {
+			if (MACD() != 0) {
+				out << std::fixed << std::setprecision(4) << MACD() << ",";
+			}
+
+		}
+
+		else if (_issignal(key[i])) {
+			if (Signal() != 0) {
+				out << std::fixed << std::setprecision(4) << Signal() << ",";
+			}
 		}
 
 
@@ -113,7 +137,27 @@ void EntityInstance::printInCSV(std::vector<std::string> key_values) {
 		}
 
 		else if(_isEMA12(key_values[i])){
-			EMA12();
+			if (EMA12() != 0) {
+				std::cout << "   " << std::fixed << std::setprecision(4) << EMA12() << ",";
+			}
+		}
+
+		else if (_isEMA26(key_values[i])) {
+			if (EMA26() != 0) {
+				std::cout << "          " << std::fixed << std::setprecision(4) << EMA26() << ",";
+			}
+		}
+
+		else if (_isMACD(key_values[i])){
+			if (MACD() != 0){
+				std::cout << "          " << std::fixed << std::setprecision(4) << MACD() << ",";
+			}
+		}
+
+		else if (_issignal(key_values[i])) {
+			if (Signal() != 0){
+				std::cout << "        " << std::fixed << std::setprecision(4) << Signal() << ",";
+			}
 		}
 
 		else{
@@ -238,14 +282,77 @@ bool EntityInstance::_isEMA12(std::string key){
 	return false;
 }
 
-void EntityInstance::EMA12(){
+bool EntityInstance::_isEMA26(std::string key){
+	std::string ema = "EMA-26";
+
+	if (ema == key){
+		return true;
+	}
+	return false;
+}
+
+bool EntityInstance::_isMACD(std::string key){
+	std::string macd = "MACD";
+	if (macd == key){
+		return true;
+	}
+
+	return false;
+}
+
+bool EntityInstance::_issignal(std::string key){
+	std::string sig = "Signal";
+
+	if (key == sig){
+		return true;
+	}
+
+	return false;
+}
+
+double EntityInstance::Signal(){
+	std::string signal = "Signal";
+
+	for (size_t i = 0; i < entityPairs.size(); i++) {
+		if (signal == entityPairs[i].attributeName()) {
+			return entityPairs[i].numberValue();
+		}
+	}
+	return 0.0;
+}
+
+double EntityInstance::MACD(){
+	std::string macd = "MACD";
+
+	for (size_t i = 0; i < entityPairs.size(); i++) {
+		if (macd == entityPairs[i].attributeName()){
+			return entityPairs[i].numberValue();
+		}
+	}
+	return 0.0;
+}
+
+double EntityInstance::EMA26(){
+	std::string ema = "EMA-26";
+
+	for (size_t i = 0; i < entityPairs.size(); i++) {
+		if (ema == entityPairs[i].attributeName()) {
+			return entityPairs[i].numberValue();
+		}
+	}
+	return 0;
+}
+
+double EntityInstance::EMA12(){
 	std::string ema = "EMA-12";
 
 	for (size_t i = 0; i < entityPairs.size(); i++) {
 		if (ema == entityPairs[i].attributeName()) {
-			std::cout << "     "<< entityPairs[i].numberValue() << ",";
+			return entityPairs[i].numberValue();
 		}
 	}
+
+	return 0;
 }
 
 double EntityInstance::stocksplit(){
@@ -353,7 +460,6 @@ double EntityInstance::close() {
 	return close_value;
 }
 
-
 std::vector<std::string>EntityInstance::attributeNames() {
 	std::vector<std::string> names;
 
@@ -363,7 +469,6 @@ std::vector<std::string>EntityInstance::attributeNames() {
 
 	return names;
 }
-
 
 void EntityInstance::addPair(Pair& pair) {
 	nums += 1;
