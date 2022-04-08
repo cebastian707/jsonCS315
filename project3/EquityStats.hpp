@@ -13,7 +13,6 @@ public:
 	void calculateMACD();
 	void calculateSignal(double days);
 	void print(std::vector<std::string> keys);
-	void printcsv(std::ofstream& out,std::vector<std::string> key);
 	double firstaverage(int days);
 private:
 	std::vector<EntityInstance> startinstance();

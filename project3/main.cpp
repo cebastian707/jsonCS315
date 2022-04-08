@@ -15,32 +15,58 @@
 #include"EquityStats.hpp"
 
 int main(int argc, char* argv[]) {
-    std::ifstream inputStream;
-    
-    inputStream.open(argv[1], std::ios::in);    // open for reading
-    if (!inputStream.is_open()) {
-        std::cout << "Unable top open " << argv[1] << ". Terminating...";
+    if (argc != 3){
+        std::cout << "Programm needs three arguments goodbye" << std::endl;
         exit(2);
     }
+    
+    std::string one = argv[1];
+    std::string arg1 = "";
+    std::ifstream inputStream;
+    inputStream.open(argv[2], std::ios::in);    // open for reading
+
+    for (size_t i = 1; i < one.size(); i++) {
+        arg1.push_back(one[i]);
+    }
+
+    if (!inputStream.is_open()) {
+        std::cout << "Unable top open " << argv[2] << ". Terminating...";
+        exit(2);
+    }
+
     inputStream.close();
-    std::ofstream output;
-    JSONParser par(argv[1]);
+    JSONParser par(argv[2]);
     EntitySet set; 
     std::vector<std::string> keyValues = { "Date","Open","High","Low","Close","Volume","EMA-12", "EMA-26", "MACD", "Signal" };
   
+    if (arg1 == "csv") {
+        set = par.parseJSONEntity();
+        EquityStats stats(set);
+        stats.calculateExponentialMovingAverage(12);
+        stats.calculateExponentialMovingAverage(26);
+        stats.calculateMACD();
+        stats.calculateSignal(9);
+        stats.print(keyValues);
+        std::cout << std::endl;
+        exit(0);
+    }
 
-    //output.open(argv[2], std::ios::out | std::ios::app);
+    else if (arg1 == "json") {
+        set = par.parseJSONEntity();
+        set.printInJSON();
+        exit(0);
+    }
 
 
-    set = par.parseJSONEntity();
-    EquityStats stats(set);
-    stats.calculateExponentialMovingAverage(12); 
-    stats.calculateExponentialMovingAverage(26);
-    stats.calculateMACD();
-    stats.calculateSignal(9);
-    stats.print(keyValues);
-    stats.printcsv(output,keyValues);
+    if ( arg1 != "csv" || arg1 != "json") {
+        std::cout << "The program only runs json files or csv files " << argv[1] << std::endl;
+        std::cout << "The file input extension is incorrect restart the program and run again!" << std::endl;
+        exit(2);
+    }
+
+
 
     return 0;
 }
-//exit(2) file could not be open 
+//exit(2) file could not be open or arguments not met
+//exit(0) program runs as excpeted

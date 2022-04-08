@@ -38,15 +38,18 @@ void Pair::printInJSON(int numspaces) {
 
 Pair::Pair(std::string attributeName, std::string attributeValue) {
 	_isNumber = false;
+	string_value = true;
+	attributename = true;
 	_attributeName = attributeName;
 	_attributeStringValue = attributeValue;
 }
 
 Pair::Pair(std::string attributeName,double num_value) {
+	attributename = true;
 	_isNumber = true;
+	string_value = false;
 	_attributeName = attributeName;
     _attributeNumberValue = num_value;
-
 }
 
 
@@ -56,6 +59,14 @@ double Pair::numberValue() {
 
 bool Pair::isDouble() {
 	return _isNumber;
+}
+
+bool Pair::isStringvalue(){
+	return string_value;
+}
+
+bool Pair::isattributename(){
+	return attributename;
 }
 
 std::string Pair::stringValue() {

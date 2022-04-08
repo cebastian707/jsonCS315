@@ -25,17 +25,17 @@ void EquityStats::calculateExponentialMovingAverage(double days){
 	
 	average = firstaverage(days);
 
-
+	
 	if (days == 12) {
-		Pair pair("EMA-12", average);
+		Pair pair("ema-12", average);
 		instance[11].addPair(pair);
 	}
 
 	else if (days == 26) {
-		Pair pair("EMA-26", average);
+		Pair pair("ema-26", average);
 		instance[25].addPair(pair);
 	}
-
+	
 	entityset.clear();
 	
 	for (size_t i = days-1; i < instance.size(); i++) {
@@ -44,7 +44,7 @@ void EquityStats::calculateExponentialMovingAverage(double days){
 				cur_value = instance[i].close();
 				current = (cur_value * smooth) + average * (1 - smooth);
 				average = current;
-				Pair pair("EMA-12", average);
+				Pair pair("ema-12", average);
 				instance[i].addPair(pair);
 			}
 
@@ -55,7 +55,7 @@ void EquityStats::calculateExponentialMovingAverage(double days){
 				cur_value = instance[i].close();
 				current = (cur_value * smooth) + average * (1 - smooth);
 				average = current;
-				Pair pair("EMA-26", average);
+				Pair pair("ema-26", average);
 				instance[i].addPair(pair);
 			}
 
@@ -78,7 +78,7 @@ void EquityStats::calculateMACD(){
 		if (instance[i].EMA12() != 0 || instance[i].EMA26() != 0) {
 			MACD_Result = instance[i].EMA12() - instance[i].EMA26();
 			if (i >= 25){
-				Pair pair("MACD", MACD_Result);
+				Pair pair("macd", MACD_Result);
 				instance[i].addPair(pair);
 			}
 		}
@@ -106,7 +106,7 @@ void EquityStats::calculateSignal(double days){
 			count += instance[i].MACD();
 			j = i;
 			x++;
-			if (x == 9){
+			if (x == days){
 				break;
 			}
 		}
@@ -114,13 +114,14 @@ void EquityStats::calculateSignal(double days){
 
 	
 	average = count / days;
-	Pair pair("Signal", average);
+	Pair pair("signal", average);
 	instance[j].addPair(pair);
 
 	for (size_t i = j+1; i < instance.size(); i++) {
-		current = (instance[i].MACD() * smooth) + average * (1 - smooth);
+		double MACD = instance[i].MACD();
+		current = (MACD * smooth) + average * (1 - smooth);
 		average = current;
-		Pair pair("Signal", current);
+		Pair pair("signal", current);
 		instance[i].addPair(pair);
 	}
 	
@@ -136,12 +137,6 @@ void EquityStats::calculateSignal(double days){
 void EquityStats::print(std::vector<std::string> keys){
 	for (size_t i = 0; i < entityset.size(); i++) {
 		entityset[i].printInCSV(keys);
-	}
-}
-
-void EquityStats::printcsv(std::ofstream& out,std::vector<std::string> key){
-	for (size_t i = 0; i < entityset.size(); i++) {
-		entityset[i].printIncsv(out,key);
 	}
 }
 

@@ -11,44 +11,55 @@
 #include"Pair.hpp"
 
 Pair JSONParser::parseAPair() {
-    //we except a string
-    std::string attribute = "";
-    std::string attribute_stringvalue = "";
-
-
-    //get the current token
-    JSONToken token = tokenizer.getToken();
-
-    attribute = token._ISString();  
+    //get the current token and check if its a string 
+    //if not kick the user out
+    JSONToken token = tokenizer.getToken();  
     
-    //Push Back a Space
-    attribute.push_back(' ');
+    if (token._isString()){
+        
+        JSONToken token2 = tokenizer.getToken();
+        
+        if (token2.iscolon()){
+            token2 = tokenizer.getToken();
+            
+            if (token2.is_number()){
+                Pair pair(token._ISString(), token2.nums());
+                return pair;
+            }
 
-    //then we except the colon add that 
-    //to the string
-    token = tokenizer.getToken();
-    char colon = token.is_charcter();
-    attribute.push_back(colon);
+            else if(token2._isString()) {
+                Pair pair(token._ISString(), token2._ISString());
+                return pair;
+            }
+
+            else if (!token2.is_number() && !token2._isString()){
+                std::cout << "Error: JSONParser::parseAPair: Expected a number or string value but found" << std::endl;
+                token.print();
+                std::cout << "Terminating..." << std::endl;
+                exit(1);
+            }
+
+        }
+
+        else if (!token2.iscolon()){
+            std::cout << "Error: JSONParser::parseAPair: Expected a Colon but found" << std::endl;
+            token.print();
+            std::cout << "Terminating..." << std::endl;
+            exit(1);
+        }
 
 
-
-
-    //check if token is either a string value 
-    //or number 
-    token = tokenizer.getToken();
-
-    if (token.is_number()){
-        double nums = token.nums();
-        Pair pair(attribute, nums);
-        //pair.printInJSON(5);
-        //pair.printInCSV();
-        return pair;
     }
 
-    attribute_stringvalue = token._ISString();
-    Pair pair(attribute, attribute_stringvalue);
-    //pair.printInJSON(5);
-    //pair.printInCSV();
+    else {
+        std::cout << "Error: JSONParser::parseAPair: Expected a string but found" << std::endl;
+        token.print();
+        std::cout << "Terminating..." << std::endl;
+        exit(1);
+    }
+
+
+    Pair pair("0", 0);
     return pair;
 }
 
@@ -92,12 +103,21 @@ EntitySet JSONParser::parseJSONEntity() {
     EntitySet set;
     EntityInstance instance;
     JSONToken token;
+    token = tokenizer.getToken();
+
+    if (!token.isBracket()){
+        std::cout << "Error: JSONParser::parseJSONEntity:: Expected an close brace, but found" << std::endl;
+        token.print();
+        std::cout << "Terminating..." << std::endl;
+        exit(1);
+    }
+
 
     do{
       instance = parseJSONObject();
       set.addEntity(instance);
       token = tokenizer.getToken();
-    } while (!token.iscloseBracket());
+    } while (!token.isBracket());
 
     return set;
 }

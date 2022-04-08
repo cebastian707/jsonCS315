@@ -16,12 +16,14 @@ public:
     Pair(std::string attributeName, std::string attributeValue);
     Pair(std::string attributeName, double num_value);
     bool isDouble();      // is the datatype of the value of this attribute a double?
+    bool isStringvalue();
+    bool isattributename();
     double numberValue();
     std::string stringValue();
     std::string attributeName();
 private:
     std::string _attributeName, _attributeStringValue;
     double _attributeNumberValue;
-    bool _isNumber;
+    bool _isNumber,string_value, attributename;
 };
 #endif //Pair_HPP

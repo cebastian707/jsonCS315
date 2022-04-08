@@ -7,11 +7,18 @@
 #include<iomanip>
 #include<iostream>
 
-bool JSONToken::iscloseBracket() {
-	if (_character == ']') {
+bool JSONToken::isBracket() {
+	if (_character == ']' || _character == '[') {
 		return true;
 	}
 
+	return false;
+}
+
+bool JSONToken::iscolon(){
+	if (_character == ':') {
+		return true;
+	}
 	return false;
 }
 
@@ -30,7 +37,7 @@ bool JSONToken::isComma() {
 }
 
 bool JSONToken::isOpenBrace() {
-	if (_character == '{' || _character == '[') {
+	if (_character == '{' || _character == '}') {
 		return true;
 	}
 

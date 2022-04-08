@@ -100,7 +100,9 @@ public:
 
 	/// @brief checks if charcter is equal to ]
 	/// @returns true if charcter is equal to ] else return false 
-	bool iscloseBracket();
+	bool isBracket();
+
+	bool iscolon();
 
 private:
 	std::string _string;

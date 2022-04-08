@@ -9,78 +9,6 @@
 #include"Pair.hpp"
 #include"JSONParser.hpp"
 
-void EntityInstance::printIncsv(std::ofstream& out, std::vector<std::string> key) {
-	out << std::endl;
-	for (size_t i = 0; i < key.size(); i++) {
-		if (_isclose(key[i])) {
-			out << std::fixed << std::setprecision(4) << close() << ",";
-		}
-
-		else if (_isdate(key[i])) {
-			out << date() << ",";
-		}
-
-		else if (_isvolume(key[i])) {
-			out << volume() << ",";
-		}
-
-		else if (_isopen(key[i])) {
-			out << std::fixed << std::setprecision(4) << open() << ",";
-
-		}
-
-		else if (_isdividends(key[i])) {
-			out << std::fixed << std::setprecision(4) << dividends() << ",";
-		}
-
-		else if (_ishigh(key[i])) {
-			out << std::fixed << std::setprecision(4) << high() << ",";
-		}
-
-		else if (_isLow(key[i])) {
-			out << std::fixed << std::setprecision(4) << low() << ",";
-		}
-
-		else if (_istimestamp(key[i])) {
-			out << timestamp() << ",";
-		}
-
-		else if (_isstocksplit(key[i])) {
-			out << std::fixed << std::setprecision(4) << stocksplit() << ",";
-		}
-
-		else if (_isEMA12(key[i])) {
-			if (EMA12() != 0) {
-				out<< std::fixed << std::setprecision(4) << EMA12() << ",";
-			}
-		}
-
-		else if (_isEMA26(key[i])) {
-			if (EMA26() != 0) {
-				out << std::fixed << std::setprecision(4) << EMA26() << ",";
-			}
-		}
-
-		else if (_isMACD(key[i])) {
-			if (MACD() != 0) {
-				out << std::fixed << std::setprecision(4) << MACD() << ",";
-			}
-
-		}
-
-		else if (_issignal(key[i])) {
-			if (Signal() != 0) {
-				out << std::fixed << std::setprecision(4) << Signal() << ",";
-			}
-		}
-
-
-		else {
-			out << "    ";
-		}
-
-	}
-}
 
 bool EntityInstance::_isLow(std::string key){
 	std::string low = "Low";
@@ -105,7 +33,7 @@ void EntityInstance::printInCSV(std::vector<std::string> key_values) {
 		}
 		
 		else if (_isvolume(key_values[i])) {
-			std::cout<<  std::fixed << std::setprecision(4) << volume() << ",";
+			std::cout << std::fixed << std::setprecision(0) << volume() << ",";
 		}
 
 		
@@ -114,7 +42,7 @@ void EntityInstance::printInCSV(std::vector<std::string> key_values) {
 		}
 		
 		else if (_isdividends(key_values[i])) {
-			std::cout << std::setprecision(13) << dividends() << ",";
+			std::cout << std::fixed << std::setprecision(4) << dividends() << ",";
 		}
 
 		
@@ -138,25 +66,36 @@ void EntityInstance::printInCSV(std::vector<std::string> key_values) {
 
 		else if(_isEMA12(key_values[i])){
 			if (EMA12() != 0) {
-				std::cout << std::fixed << std::setprecision(4) << EMA12() << ",";
+				std::cout  << std::fixed << std::setprecision(4) << EMA12();
 			}
 		}
 
 		else if (_isEMA26(key_values[i])) {
 			if (EMA26() != 0) {
-				std::cout << std::fixed << std::setprecision(4) << EMA26() << ",";
+				std::cout << "," << std::fixed << std::setprecision(4) << EMA26();
+			}
+
+			else if (EMA26() == 0) {
+				std::cout << ",";
 			}
 		}
 
 		else if (_isMACD(key_values[i])){
 			if (MACD() != 0){
-				std::cout << std::fixed << std::setprecision(4) << MACD() << ",";
+				std::cout << "," << std::fixed << std::setprecision(4) << MACD();
+			}
+
+			else if(MACD() == 0) {
+				std::cout << ",";
 			}
 		}
 
 		else if (_issignal(key_values[i])) {
 			if (Signal() != 0){
-				std::cout << std::fixed << std::setprecision(4) << Signal() << ",";
+				std::cout << "," << std::fixed << std::setprecision(4) << Signal();
+			}
+			else  if(Signal()==0) {
+				std::cout << ",";
 			}
 		}
 
@@ -167,30 +106,56 @@ void EntityInstance::printInCSV(std::vector<std::string> key_values) {
 	}
 }
 
-
-
 EntityInstance::EntityInstance() {
 	close_value = 0;
 	nums = 0;
 }
 
 void EntityInstance::printInJSON() {
-	std::cout << std::setw(6) << "{" << std::endl;
-	for (size_t i = 0; i < entityPairs.size(); i++) {
-		std::cout <<"      "<< entityPairs[i].attributeName() << " ";
 
-		if (entityPairs[i].isDouble()) {
+	std::cout << "   " << "{" << std::endl;
+	for (size_t i = 0; i < entityPairs.size(); i++) {
+		  if (entityPairs[i].isattributename()) {
+			  if (entityPairs[i].attributeName() == "StockSplits") {
+				  std::string stock = "\"Stock Splits\": ";
+				  std::cout << "      " << stock;
+
+				  if (entityPairs[i].isDouble()) {
+					  std::cout << std::setprecision(13) << entityPairs[i].numberValue();
+				  }
+
+				  if (entityPairs[i].isStringvalue()) {
+					  std::string stringname = "\"" + entityPairs[i].stringValue() + "\"";
+					  std::cout << stringname;
+				  }
+
+				  if (i != entityPairs.size() - 1) {
+					  std::cout << "," << std::endl;
+				  }
+				  continue;
+			  }
+
+			std::string name = "\"" + entityPairs[i].attributeName() + "\"" + ": ";
+			std::cout << "      " << name;
+		 
+		  }
+
+		 if (entityPairs[i].isDouble()) {
 			std::cout << std::setprecision(13) << entityPairs[i].numberValue();
-		}
-		
-		std::cout << entityPairs[i].stringValue();
-		
-		if (i != entityPairs.size()-1){
-			std::cout << ',' << std::endl;
-		}
+		 }
+
+		 if (entityPairs[i].isStringvalue()) {
+			 std::string stringname = "\"" + entityPairs[i].stringValue() + "\"";
+			 std::cout << stringname;
+		 }
+
+		 if (i != entityPairs.size() - 1) {
+			 std::cout << "," << std::endl;
+		 }
+
 	}
 	std::cout << std::endl;
-	std::cout << std::setw(6) << "}";
+	std::cout << "   " << "}";
 }
 
 bool EntityInstance::_ishigh(std::string key){
@@ -311,7 +276,7 @@ bool EntityInstance::_issignal(std::string key){
 }
 
 double EntityInstance::Signal(){
-	std::string signal = "Signal";
+	std::string signal = "signal";
 
 	for (size_t i = 0; i < entityPairs.size(); i++) {
 		if (signal == entityPairs[i].attributeName()) {
@@ -322,7 +287,7 @@ double EntityInstance::Signal(){
 }
 
 double EntityInstance::MACD(){
-	std::string macd = "MACD";
+	std::string macd = "macd";
 
 	for (size_t i = 0; i < entityPairs.size(); i++) {
 		if (macd == entityPairs[i].attributeName()){
@@ -333,7 +298,7 @@ double EntityInstance::MACD(){
 }
 
 double EntityInstance::EMA26(){
-	std::string ema = "EMA-26";
+	std::string ema = "ema-26";
 
 	for (size_t i = 0; i < entityPairs.size(); i++) {
 		if (ema == entityPairs[i].attributeName()) {
@@ -344,7 +309,7 @@ double EntityInstance::EMA26(){
 }
 
 double EntityInstance::EMA12(){
-	std::string ema = "EMA-12";
+	std::string ema = "ema-12";
 
 	for (size_t i = 0; i < entityPairs.size(); i++) {
 		if (ema == entityPairs[i].attributeName()) {
@@ -356,7 +321,7 @@ double EntityInstance::EMA12(){
 }
 
 double EntityInstance::stocksplit(){
-	std::string stock = "\"Stock Splits\" :";
+	std::string stock = "StockSplits";
 
 	for (size_t i = 0; i < entityPairs.size(); i++) {
 		if (stock == entityPairs[i].attributeName()) {
@@ -368,7 +333,7 @@ double EntityInstance::stocksplit(){
 }
 
 double EntityInstance::low(){
-	std::string low = "\"Low\" :";
+	std::string low = "Low";
 
 	for (size_t i = 0; i < entityPairs.size(); i++) {
 		if (low == entityPairs[i].attributeName()) {
@@ -380,7 +345,7 @@ double EntityInstance::low(){
 }
 
 double EntityInstance::high(){
-	std::string high = "\"High\" :";
+	std::string high = "High";
 
 	for (size_t i = 0; i < entityPairs.size(); i++) {
 		if (high == entityPairs[i].attributeName()) {
@@ -391,7 +356,7 @@ double EntityInstance::high(){
 }
 
 double EntityInstance::dividends(){
-	std::string dividends = "\"Dividends\" :";
+	std::string dividends = "Dividends";
 	double dividend = 0;
 
 	for (size_t i = 0; i < entityPairs.size(); i++) {
@@ -403,7 +368,7 @@ double EntityInstance::dividends(){
 }
 
 double EntityInstance::open(){
-	std::string open = "\"Open\" :";
+	std::string open = "Open";
 
 	for (size_t i = 0; i < entityPairs.size(); i++) {
 		if (entityPairs[i].attributeName() == open) {
@@ -415,7 +380,7 @@ double EntityInstance::open(){
 }
 
 double EntityInstance::volume(){
-	std::string vol = "\"Volume\" :";
+	std::string vol = "Volume";
 
 	for (size_t i = 0; i < entityPairs.size(); i++) {
 		if (entityPairs[i].attributeName() == vol) {
@@ -427,7 +392,7 @@ double EntityInstance::volume(){
 }
 
 std::string EntityInstance::date(){
-	std::string dat = "\"Date\" :";
+	std::string dat = "Date";
 	
 	for (size_t i = 0; i < entityPairs.size(); i++) {
 		if (entityPairs[i].attributeName() == dat) {
@@ -439,7 +404,7 @@ std::string EntityInstance::date(){
 }
 
 std::string EntityInstance::timestamp(){
-	std::string time = "\"Timestamp\" :";
+	std::string time = "Timestamp";
 
 	for (size_t i = 0; i < entityPairs.size(); i++) {
 		if (time == entityPairs[i].attributeName()) {
@@ -450,7 +415,7 @@ std::string EntityInstance::timestamp(){
 }
 
 double EntityInstance::close() {
-	std::string close = "\"Close\" :";
+	std::string close = "Close";
 	for (size_t i = 0; i < entityPairs.size(); i++) {
 		if (entityPairs[i].attributeName() == close) {
 			close_value = entityPairs[i].numberValue();
