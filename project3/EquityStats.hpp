@@ -9,12 +9,13 @@
 class EquityStats{
 public:
 	EquityStats(EntitySet& instanceOfEntitySet);
-	void calculateExponentialMovingAverage(double tweleve);
+	void calculateExponentialMovingAverage(int tweleve);
 	void calculateMACD();
-	void calculateSignal(double days);
+	void calculateSignal(int days);
 	void print(std::vector<std::string> keys);
 	double firstaverage(int days);
 private:
+	int day = 0;
 	std::vector<EntityInstance> startinstance();
 	std::vector<EntitySet> entityset;
 	std::vector<EntityInstance> instance;
