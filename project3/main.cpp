@@ -15,30 +15,36 @@
 #include"EquityStats.hpp"
 
 int main(int argc, char* argv[]) {
+    //Make sure we have 3 arguments
     if (argc != 3){
         std::cout << "Programm needs three arguments goodbye" << std::endl;
         exit(2);
     }
-    
+
+    //variables and stream to read input
     std::string one = argv[1];
     std::string arg1 = "";
     std::ifstream inputStream;
     inputStream.open(argv[2], std::ios::in);    // open for reading
 
+    //skip the - and just read or csv or json
     for (size_t i = 1; i < one.size(); i++) {
         arg1.push_back(one[i]);
     }
 
+    //check if file is open
     if (!inputStream.is_open()) {
-        std::cout << "Unable top open " << argv[2] << ". Terminating...";
+        std::cout << "Unable to open " << argv[2] << ". Terminating...";
         exit(2);
     }
 
+    //more variables and a vector
     inputStream.close();
     JSONParser par(argv[2]);
     EntitySet set; 
     std::vector<std::string> keyValues = { "Date","Open","High","Low","Close","Volume","EMA-12", "EMA-26", "MACD", "Signal" };
   
+    //check if the first argument is a csv file
     if (arg1 == "csv") {
         set = par.parseJSONEntity();
         EquityStats stats(set);
@@ -51,14 +57,17 @@ int main(int argc, char* argv[]) {
         exit(0);
     }
 
+
+    //check if the file is a json file
     else if (arg1 == "json") {
         set = par.parseJSONEntity();
         set.printInJSON();
         exit(0);
     }
 
-
-    if ( arg1 != "csv" || arg1 != "json") {
+    //if the file is not csv or json 
+    //diplay this message to user
+    else if ( arg1 != "csv" || arg1 != "json") {
         std::cout << "The program only runs json files or csv files " << argv[1] << std::endl;
         std::cout << "The file input extension is incorrect restart the program and run again!" << std::endl;
         exit(2);

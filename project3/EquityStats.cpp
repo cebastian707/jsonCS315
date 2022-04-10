@@ -1,5 +1,6 @@
 /*BY::Cebastian Santiago 
-* 
+* EquityStats cpp file
+* Project 3 DSA
 */
 #include<iostream>
 #include<iomanip>

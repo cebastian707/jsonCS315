@@ -1,4 +1,5 @@
 /*BY Cebastian Santiago::CS315 Project 3 
+* Pair class header file
 * reading JSON files 
 */
 #pragma once
@@ -16,11 +17,11 @@ public:
     Pair(std::string attributeName, std::string attributeValue);
     Pair(std::string attributeName, double num_value);
     bool isDouble();      // is the datatype of the value of this attribute a double?
-    bool isStringvalue();
-    bool isattributename();
-    double numberValue();
-    std::string stringValue();
-    std::string attributeName();
+    bool isStringvalue(); //check if its a string value
+    bool isattributename();//check if its an attribuate name 
+    double numberValue(); //  return a double
+    std::string stringValue(); // return a string value
+    std::string attributeName(); // return an attribuate name
 private:
     std::string _attributeName, _attributeStringValue;
     double _attributeNumberValue;

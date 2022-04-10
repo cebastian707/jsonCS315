@@ -1,5 +1,5 @@
 /*By Cebastian Santiago 
-* CS315 JSONParser class header
+* CS315 JSONParser class header File
 * 
 */
 #pragma once
@@ -15,9 +15,30 @@
 
 class JSONParser {
 public:
+    /// <summary>
+    /// constructer of the class 
+    /// </summary>
+    /// <param name="nameOfInputFile"></param>
     JSONParser(std::string nameOfInputFile);
+
+    /// <summary>
+    ///  Uses tokenizer and JSONToken two parse two tokens a string name 
+    /// and a number or string value 
+    /// </summary>
+    /// <returns></returns>
     Pair parseAPair();
+
+
+    /// <summary>
+    /// parses a json instance form { to }
+    /// </summary>
+    /// <returns></returns>
     EntityInstance parseJSONObject();
+    
+    /// <summary>
+    /// parses an entire json file 
+    /// </summary>
+    /// <returns></returns>
     EntitySet parseJSONEntity();
 
 private:

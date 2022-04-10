@@ -11,13 +11,42 @@
 
 class EntityInstance {
 public:
+    /// <summary>
+    /// Construct of the class
+    /// </summary>
     EntityInstance();
+
+    /// <summary>
+    /// adds a pair form json attribuate name and attribuate string or number
+    /// </summary>
+    /// <param name="pair"></param>
     void addPair(Pair& pair); // Add a new pair to this entity.
+    /// <summary>
+    /// counts the number of attribuates
+    /// </summary>
+    /// <returns></returns>
     int numAttributes();  // how many pairs are in this instance?
+
+    /// <summary>
+    /// returns attribuate names of vector
+    /// </summary>
+    /// <returns></returns>
     std::vector<std::string> attributeNames();
+
+    /// <summary>
+    /// precondition::needs a vector of attribautes passed to it
+    /// prints a csv file with commas
+    /// </summary>
+    /// <param name="key_values"></param>
     void printInCSV(std::vector<std::string> key_values);
+
+    /// <summary>
+    /// prints the json file passed to it human readable
+    /// </summary>
     void printInJSON();   // prints this object. 
     // more member functions here when necessary.
+    //all bool functions check if the key value 
+    //is the current instance
     bool _isLow(std::string key);
     bool _ishigh(std::string key);
     bool _isdividends(std::string key);
@@ -32,7 +61,8 @@ public:
     bool _isMACD(std::string key);
     bool _issignal(std::string key);
 
-    
+    //rest of function grab the attribuate value
+    //form the key
     double Signal();
     double MACD();
     double EMA26();

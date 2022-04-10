@@ -18,7 +18,8 @@ Pair JSONParser::parseAPair() {
     if (token._isString()){
         
         JSONToken token2 = tokenizer.getToken();
-        
+        //check if we have a colon and conintue to read either a string 
+        //value or a number
         if (token2.iscolon()){
             token2 = tokenizer.getToken();
             
@@ -104,15 +105,17 @@ EntitySet JSONParser::parseJSONEntity() {
     EntityInstance instance;
     JSONToken token;
     token = tokenizer.getToken();
-
+    //get the first token and make sure its a [
+    //if its a [ call other two functions and add
+    //an instance and entityse and return set 
+    //if not [ kick the user out
     if (!token.isBracket()){
         std::cout << "Error: JSONParser::parseJSONEntity:: Expected an close brace, but found" << std::endl;
         token.print();
         std::cout << "Terminating..." << std::endl;
         exit(1);
     }
-
-
+ 
     do{
       instance = parseJSONObject();
       set.addEntity(instance);
