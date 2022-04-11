@@ -5,7 +5,7 @@
 #include<iostream>
 #include<iomanip>
 #include<fstream>
-#include "EquityStats.hpp"
+#include"EquityStats.hpp"
 #include"Pair.hpp"
 #include"EntityInstance.hpp"
 #include"EntitySet.hpp"
