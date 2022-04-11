@@ -25,7 +25,7 @@ public:
 	/// </summary>
 	/// <param name="tweleve"></param>
 	void calculateExponentialMovingAverage(int tweleve);
-	
+	   
 	/// <summary>
 	/// Precondition calculates MACD base on difference being 
 	/// 26 days and days of EMA 
