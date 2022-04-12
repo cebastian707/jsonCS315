@@ -6,7 +6,6 @@
 #ifndef Pair_HPP
 #define Pair_HPP
 #include<string>
-
 class Pair { // represents a single attribute and its value:
 public:
     // use the first constructor if the value of the pair is a string

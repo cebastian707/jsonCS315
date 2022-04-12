@@ -22,7 +22,7 @@ bool EntityInstance::_isLow(std::string key){
 
 void EntityInstance::printInCSV(std::vector<std::string> key_values) {
 	std::cout << std::endl;
-	
+
 	for (size_t i = 0; i < key_values.size(); i++) {
 		if (_isclose(key_values[i])) {
 			std::cout<< std::fixed << std::setprecision(4) << close() << ",";
@@ -100,7 +100,7 @@ void EntityInstance::printInCSV(std::vector<std::string> key_values) {
 		}
 
 		else{
-			std::cout <<" ";
+			 entityPairs[i].printInCSV();
 		}
 	
 	}
