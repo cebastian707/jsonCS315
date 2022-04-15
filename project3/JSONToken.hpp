@@ -102,6 +102,8 @@ public:
 	/// @returns true if charcter is equal to ] else return false 
 	bool isBracket();
 
+	/// @brief checks if charcter is a colon
+	/// @returns true or flase 
 	bool iscolon();
 
 private:

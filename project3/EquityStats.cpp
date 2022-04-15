@@ -28,12 +28,12 @@ void EquityStats::calculateExponentialMovingAverage(int days) {
 
 
 	if (days == 12) {
-		Pair pair("ema-12", average);
+		Pair pair("EMA-12", average);
 		instance[days-1].addPair(pair);
 	}
 
 	else if (days == 26) {
-		Pair pair("ema-26", average);
+		Pair pair("EMA-26", average);
 		instance[days-1].addPair(pair);
 	}
 
@@ -45,7 +45,7 @@ void EquityStats::calculateExponentialMovingAverage(int days) {
 				cur_value = instance[i].close();
 				current = (cur_value * smooth) + average * (1 - smooth);
 				average = current;
-				Pair pair("ema-12", average);
+				Pair pair("EMA-12", current);
 				instance[i].addPair(pair);
 			}
 
@@ -56,7 +56,7 @@ void EquityStats::calculateExponentialMovingAverage(int days) {
 				cur_value = instance[i].close();
 				current = (cur_value * smooth) + average * (1 - smooth);
 				average = current;
-				Pair pair("ema-26", average);
+				Pair pair("EMA-26", current);
 				instance[i].addPair(pair);
 			}
 
@@ -79,7 +79,7 @@ void EquityStats::calculateMACD() {
 		if (instance[i].EMA12() != 0 || instance[i].EMA26() != 0) {
 			MACD_Result = instance[i].EMA12() - instance[i].EMA26();
 			if (i >= 25) {
-				Pair pair("macd", MACD_Result);
+				Pair pair("MACD", MACD_Result);
 				instance[i].addPair(pair);
 			}
 		}
@@ -115,14 +115,14 @@ void EquityStats::calculateSignal(int days) {
 
 
 	average = count / days;
-	Pair pair("signal", average);
+	Pair pair("Signal", average);
 	instance[j].addPair(pair);
 
 	for (size_t i = j + 1; i < instance.size(); i++) {
 		double MACD = instance[i].MACD();
 		current = (MACD * smooth) + average * (1 - smooth);
 		average = current;
-		Pair pair("signal", current);
+		Pair pair("Signal", current);
 		instance[i].addPair(pair);
 	}
 

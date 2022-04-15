@@ -50,7 +50,6 @@ void JSONToken::make_number(double nums) {
 }
 
 double JSONToken::nums() {
-	//std::cout<<std::setprecision(13)<< number <<  std::endl;
 	return number;
 }
 

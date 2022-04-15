@@ -25,7 +25,15 @@ void EntityInstance::printInCSV(std::vector<std::string> key_values) {
 
 	for (size_t i = 0; i < key_values.size(); i++) {
 		if (_isclose(key_values[i])) {
-			std::cout<< std::fixed << std::setprecision(4) << close() << ",";
+			/*
+			if (int(close()) == close()) {
+				int clo = close();
+				std::cout << clo << ",";
+			}
+			*/
+			//else {
+				std::cout << std::fixed << std::setprecision(4) << close() << ",";
+			//}
 		}
 		
 		else if(_isdate(key_values[i])){
@@ -33,26 +41,58 @@ void EntityInstance::printInCSV(std::vector<std::string> key_values) {
 		}
 		
 		else if (_isvolume(key_values[i])) {
-			std::cout << std::fixed << std::setprecision(0) << volume() << ",";
+			//if (int(volume()) == volume()) {
+				//int vol = volume();
+				//std::cout << vol << ",";
+			//}
+			//else {
+				std::cout << std::fixed << std::setprecision(0) << volume() << ",";
+			//}
 		}
 
 		
 		else if (_isopen(key_values[i])) {
-			std::cout<< std::fixed << std::setprecision(4) << open() << ",";
+			//if (int(open()) == open()) {
+				//int op = open();
+				//std::cout << op << ",";
+			//}
+			//else {
+				std::cout << std::fixed << std::setprecision(4) << open() << ",";
+			//}
 		}
 		
 		else if (_isdividends(key_values[i])) {
-			std::cout << std::fixed << std::setprecision(4) << dividends() << ",";
+			//if (int(dividends()) == dividends()) {
+				//int divi = dividends();
+				//std::cout << divi << ",";
+			//}
+
+			//else {
+				std::cout << std::fixed << std::setprecision(4) << dividends() << ",";
+			//}
 		}
 
 		
 		else if (_ishigh(key_values[i])) {
-			std::cout<< std::fixed << std::setprecision(4) << high() << ",";
+			//if (int(high()) == high()) {
+				//int hi = high();
+				//std::cout << hi << ",";
+			//}
+			
+			//else {
+				std::cout << std::fixed << std::setprecision(4) << high() << ",";
+			//}
 		}
 		
 
 		else if (_isLow(key_values[i])) {
-			std::cout<<std::fixed << std::setprecision(4) << low() << ",";
+			//if (int(low()) == low()) {
+				//int l = low();
+				//std::cout << l << ",";
+			//}
+			//else {
+				std::cout << std::fixed << std::setprecision(4) << low() << ",";
+			//}
 		}
 
 
@@ -61,7 +101,13 @@ void EntityInstance::printInCSV(std::vector<std::string> key_values) {
 		}
 
 		else if (_isstocksplit(key_values[i])){
-			std::cout<< std::fixed << std::setprecision(4) << stocksplit() << ",";
+			//if (int(stocksplit()) == stocksplit()) {
+				//int split = stocksplit();
+				//std::cout << split << ",";
+			//}
+			//else {
+				std::cout << std::fixed << std::setprecision(4) << stocksplit() << ",";
+			//}
 		}
 
 		else if(_isEMA12(key_values[i])){
@@ -276,7 +322,7 @@ bool EntityInstance::_issignal(std::string key){
 }
 
 double EntityInstance::Signal(){
-	std::string signal = "signal";
+	std::string signal = "Signal";
 
 	for (size_t i = 0; i < entityPairs.size(); i++) {
 		if (signal == entityPairs[i].attributeName()) {
@@ -287,7 +333,7 @@ double EntityInstance::Signal(){
 }
 
 double EntityInstance::MACD(){
-	std::string macd = "macd";
+	std::string macd = "MACD";
 
 	for (size_t i = 0; i < entityPairs.size(); i++) {
 		if (macd == entityPairs[i].attributeName()){
@@ -298,7 +344,7 @@ double EntityInstance::MACD(){
 }
 
 double EntityInstance::EMA26(){
-	std::string ema = "ema-26";
+	std::string ema = "EMA-26";
 
 	for (size_t i = 0; i < entityPairs.size(); i++) {
 		if (ema == entityPairs[i].attributeName()) {
@@ -309,7 +355,7 @@ double EntityInstance::EMA26(){
 }
 
 double EntityInstance::EMA12(){
-	std::string ema = "ema-12";
+	std::string ema = "EMA-12";
 
 	for (size_t i = 0; i < entityPairs.size(); i++) {
 		if (ema == entityPairs[i].attributeName()) {

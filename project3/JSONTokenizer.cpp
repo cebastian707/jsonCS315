@@ -76,7 +76,7 @@ JSONToken JSONTokenizer::getToken() {
 	*JSONTokenizer.cpp:68:1: warning: control reaches end of non-void function [-Wreturn-type] 68 | }
 	* | ^
 	*/
-	JSONToken token;
+	JSONToken token('\0');
 	return token;
 }
 //exit(4) file could not be open
